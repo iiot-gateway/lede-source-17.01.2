@@ -12,7 +12,7 @@ DEVICE_TYPE:=developerboard
 KERNEL_PATCHVER:=4.4
 KERNELNAME:=Image dtbs
 FEATURES:=squashfs nand usb pcie gpio
-SUBTARGETS:=64b 32b
+SUBTARGETS:=64b 32b armv7
 MAINTAINER:=Jiang Yutang <jiangyutang1978@gmail.com>
 
 include $(INCLUDE_DIR)/target.mk

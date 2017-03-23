@@ -45,7 +45,25 @@ ifeq ($(SUBTARGET),32b)
   KERNEL_LOADADDR = 0x80008000
   KERNEL_ENTRY_POINT = 0x80008000
 endif
+ifeq ($(SUBTARGET),armv7)
+  KERNEL_LOADADDR = 0x80008000
+  KERNEL_ENTRY_POINT = 0x80008000
+endif
 endef
+
+ifeq ($(SUBTARGET),armv7)
+    define Device/ls1021aiot
+    	DEVICE_TITLE := ls1021aiot
+	DEVICE_PACKAGES += uboot-layerscape-$(SUBTARGET)-ls1021aiot
+	DEVICE_DTS = ls1021a-iot
+	IMAGE/firmware.bin = append-ls-uboot $(1) | pad-to 3M | \
+		append-ls-dtb $$(DEVICE_DTS) | pad-to 5M | \
+		append-kernel | pad-to 10M | \
+		append-rootfs | pad-rootfs | check-size 67108865
+    endef
+TARGET_DEVICES += ls1021aiot
+
+else
 
 define Device/ls1043ardb
   DEVICE_TITLE := ls1043ardb-$(SUBTARGET)
@@ -119,5 +137,7 @@ endif
 					append-rootfs | pad-rootfs | check-size 24117249
 endef
 TARGET_DEVICES += ls2088ardb
+
+endif
 
 $(eval $(call BuildImage))
