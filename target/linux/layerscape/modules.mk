@@ -18,3 +18,17 @@ define KernelPackage/ppfe/description
 endef
 
 $(eval $(call KernelPackage,ppfe))
+
+define KernelPackage/nxp_pn5xx
+  SUBMENU:= $(OTHER_MENU)
+  TITLE:= NXP NFC PN5XX driver support
+  KCONFIG:= CONFIG_NFC_NXP_PN5XX
+  FILES:= $(LINUX_DIR)/drivers/misc/nxp-pn5xx/pn5xx_i2c.ko
+  AUTOLOAD:=$(call AutoLoad,35,nxp_pn5xx)
+endef
+
+define KernelPackage/nxp_pn5xx/description
+        Kernel modules for NXP PN5XX NFC driver support
+endef
+
+$(eval $(call KernelPackage,nxp_pn5xx))
