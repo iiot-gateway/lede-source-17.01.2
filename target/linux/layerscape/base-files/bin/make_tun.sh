@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Create a new TUN interface for Thread interaction.
 ip -6 tuntap add mode tun fslthr0
