@@ -17,6 +17,7 @@ define Package/libnfc-nci
   SECTION:=utils
   CATEGORY:=Utilities
   TITLE:=Linux demo Application for NFC PN71xx module
+  DEPENDS:=+libstdcpp
 endef
 
 define Package/libnfc-nci/description
@@ -45,7 +46,6 @@ define Package/libnfc-nci/install
 	mkdir -p $(1)/data
 	mkdir -p $(1)/data/nfc
 	$(INSTALL_DIR) $(1)/usr/lib/
-	$(CP) $(TOPDIR)/staging_dir/toolchain-aarch64_armv8-a_gcc-5.4.0_musl/lib/libstdc++.so.6 $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/.libs/libnfc_nci_linux* $(1)/usr/lib/
 	$(INSTALL_DIR) $(1)/data/nfc
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/conf/PN7150/libnfc-nxp.conf \
