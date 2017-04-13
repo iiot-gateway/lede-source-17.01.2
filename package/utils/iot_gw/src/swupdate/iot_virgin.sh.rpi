@@ -1,0 +1,36 @@
+#!/bin/sh
+# ------------------------------------------------------------------
+# SW Update shell script vor virgin IoT Gateways
+# - It assumes that the cloud image is already on /tmp
+# ------------------------------------------------------------------
+# Author:    nlv10677
+# Copyright: NXP B.V. 2014. All rights reserved
+# ------------------------------------------------------------------
+
+IMAGE=iot_image.tgz
+
+# UNZIP new SW image, prepare permissions, copy and remove
+echo "Unpacking image $IMAGE"
+tar -xzf /tmp/$IMAGE -C /tmp
+
+# Create iot directory tree in /home/pi if not already exists
+if [ ! -d /home/pi/iot ]; then
+    mkdir /home/pi/iot
+fi
+
+# Leave in /tmp what is supposed to stay here and copy the rest to /home/pi/iot
+mv /tmp/images/tmp/* /tmp
+cp -pR /tmp/images/* /home/pi/iot
+
+# Clean up
+rm -R /tmp/images
+rm /tmp/$IMAGE
+
+# Init as usual (verbose)
+chmod +x /home/pi/iot/usr/bin/iot_init.sh
+/home/pi/iot/usr/bin/iot_init.sh
+
+# and finally reboot
+echo "Ready to reboot"
+#reboot
+

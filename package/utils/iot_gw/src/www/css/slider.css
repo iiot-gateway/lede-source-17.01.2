@@ -1,0 +1,31 @@
+/**
+ * Slider
+ */
+.slider {
+  position: relative;
+}
+.slider * {
+  position: absolute;
+  cursor: crosshair;
+}
+.slider, .slider {
+  width: 101px;
+  height: 101px;
+}
+.slider .level, .slider .overlay {
+  top: 0px;
+  left: 0px;
+  width: 101px;
+  height: 101px;
+}
+.slider .overlay {
+  background: url(../img/greybar.png) no-repeat;
+}
+.slider .marker {
+  width: 17px;
+  height: 17px;
+  margin: -8px 0 0 -8px;
+  overflow: hidden; 
+  background: url(../img/marker.png) no-repeat;
+}
+

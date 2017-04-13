@@ -1,0 +1,11 @@
+"tp"  : { "cmd" : "confmode" }
+"tp+" : { "man" : "9999999999",  "nm" : "Climatjoo", "type" : "c" }
+"tp+" : { "ui"  : "677676767A",  "nm" : "UI bij Ed" }
+"tp+" : { "sen" : "98623ADF987", "nm" : "Blauwe Sensor" }
+"tp+" : { "ui"  : "3986557BBBA", "nm" : "UI op de gang" }
+"tp+" : { "sen" : "ABCDEF17689", "nm" : "Sensor nr 2" }
+"tp+" : { "lmp" : "2222221111",  "nm" : "Lamp bij Ed" }
+"tp+" : { "pmp" : "1111111111",  "nm" : "Verwarmingsklep" }
+"tp"  : { "cmd" : "closeconf" }
+
+

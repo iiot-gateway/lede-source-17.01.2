@@ -1,0 +1,3 @@
+"act" : { "mac" : "1234567890123456", "type" : "pump", "id" : 1, "ctrl" : 1, "level" : 50 }
+"act" : { "mac" : "AAAA567890123456", "type" : "lamp", "ctrl" : 1, "level" : 50, "scn" : 1, "clr" : 7657 }
+

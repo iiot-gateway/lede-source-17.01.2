@@ -1,0 +1,21 @@
+#!/bin/sh /etc/rc.common
+# ------------------------------------------------------------------
+# Author:    nlv10677
+# Copyright: NXP B.V. 2014. All rights reserved
+# ------------------------------------------------------------------
+
+START=99
+
+PROG=iot_dbp
+
+start () {
+    echo Starting /usr/bin/$PROG
+    if [ -z `pidof $PROG` ]; then
+        /usr/bin/$PROG > /dev/null &
+    fi
+}
+
+stop () {
+    echo Stop $PROG
+    killbyname $PROG
+}

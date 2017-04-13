@@ -1,0 +1,103 @@
+#!/bin/sh
+# ------------------------------------------------------------------
+# Author:    nlv10677
+# Copyright: NXP B.V. 2015. All rights reserved
+# ------------------------------------------------------------------
+
+# ---------------------------------------------------------------
+# Create some directories if they not already exists
+# ---------------------------------------------------------------
+
+echo "+++++++++ Init start +++++++" >> /tmp/su.log
+echo "Init 1: Make IoT directories" >> /tmp/su.log
+
+if [ ! -d /usr/share/iot ]; then
+    mkdir /usr/share/iot
+fi
+
+if [ ! -d /www/img ]; then
+    mkdir /www/img
+fi
+
+if [ ! -d /www/js ]; then
+    mkdir /www/js
+fi
+
+if [ ! -d /www/css ]; then
+    mkdir /www/css
+fi
+
+if [ ! -d /www/cgi-bin ]; then
+    mkdir /www/cgi-bin
+fi
+
+# ---------------------------------------------------------------
+# Set the persmissions right of our uploaded images
+# ---------------------------------------------------------------
+
+echo "Init 2: Set permissions right" >> /tmp/su.log
+
+chmod +x /etc/init.d/iot_*
+chmod +x /usr/bin/iot_*
+chmod +x /usr/bin/killbyname
+chmod +x /www/cgi-bin/iot_*
+
+# ---------------------------------------------------------------
+# Set the write permissions on /tmp for the update mechanism
+# ---------------------------------------------------------------
+
+echo "Init 3: Make /tmp writable for Apache" >> /tmp/su.log
+
+chmod o+w /tmp
+
+# ---------------------------------------------------------------
+# Create automatic startup scripts for our new IoT programs/daemons
+# The test is there to allow multiple calls of this script
+# ---------------------------------------------------------------
+
+echo "Init 4: Install startup scripts" >> /tmp/su.log
+
+if [ ! -f /etc/rc.d/S99iot_zb_initd ];
+then
+	/etc/init.d/iot_zb_initd enable
+fi
+
+if [ ! -f /etc/rc.d/S99iot_sj_initd ];
+then
+    /etc/init.d/iot_sj_initd enable
+fi
+
+if [ ! -f /etc/rc.d/S99iot_ci_initd ];
+then
+    /etc/init.d/iot_ci_initd enable
+fi
+
+if [ ! -f /etc/rc.d/S99iot_nd_initd ];
+then
+    /etc/init.d/iot_nd_initd enable
+fi
+
+if [ ! -f /etc/rc.d/S99iot_gd_initd ];
+then
+    /etc/init.d/iot_gd_initd enable
+fi
+
+if [ ! -f /etc/rc.d/S99iot_dbp_initd ];
+then
+    /etc/init.d/iot_dbp_initd enable
+fi
+
+if [ ! -f /etc/rc.d/S99iot_su_initd ];
+then
+    /etc/init.d/iot_su_initd enable
+fi
+
+# ---------------------------------------------------------------
+# Upgrade the new Coordinator image
+# ---------------------------------------------------------------
+
+echo "Init 5: Upgrade Coordinator image" >> /tmp/su.log
+JennicModuleAutoProgram.sh
+
+echo "+++++++++ Init 6: end +++++++" >> /tmp/su.log
+

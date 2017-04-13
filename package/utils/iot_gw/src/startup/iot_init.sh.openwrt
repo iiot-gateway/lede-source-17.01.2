@@ -1,0 +1,144 @@
+#!/bin/sh
+# ------------------------------------------------------------------
+# Author:    nlv10677
+# Copyright: NXP B.V. 2014. All rights reserved
+# ------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------
+# Set the persmissions right of our uploaded images
+# ---------------------------------------------------------------
+
+chmod +x /etc/init.d/iot_*
+chmod +x /usr/bin/iot_*
+chmod +x /usr/bin/killbyname
+chmod +x /www/cgi-bin/iot_*
+
+# ---------------------------------------------------------------
+# Create some directories if they not already exists
+# ---------------------------------------------------------------
+
+if [ ! -d /usr/share/iot ]; then
+    mkdir /usr/share/iot
+fi
+
+if [ ! -d /www/img ]; then
+    mkdir /www/img
+fi
+
+if [ ! -d /www/js ]; then
+    mkdir /www/js
+fi
+
+if [ ! -d /www/css ]; then
+    mkdir /www/css
+fi
+
+if [ ! -d /www/cgi-bin ]; then
+    mkdir /www/cgi-bin
+fi
+
+# ---------------------------------------------------------------
+# Remove old JIP daemons
+# The test is there to allow multiple calls of this script
+# ---------------------------------------------------------------
+
+if [ -f /etc/rc.d/S996LoWPAN ];
+then
+	echo Remove 6LoWPAN startup script in /etc/rc.d
+	rm /etc/rc.d/S996LoWPAN
+fi
+
+if [ -f /etc/rc.d/S50mrd6 ];
+then
+	echo Remove mrd6 startup script in /etc/rc.d
+	rm /etc/rc.d/S50mrd6
+fi
+
+if [ -f /etc/rc.d/S99JIPd ];
+then
+	echo Remove JIPd startup script in /etc/rc.d
+	rm /etc/rc.d/S99JIPd
+fi
+
+if [ -f /etc/rc.d/S99zigbee-jip-daemon ];
+then
+	echo Remove zigbee-jip-daemon startup script in /etc/rc.d
+	rm /etc/rc.d/S99zigbee-jip-daemon
+fi
+
+if [ -f /etc/rc.d/S99NFCd ];
+then
+	echo Remove NFCd startup script in /etc/rc.d
+	rm /etc/rc.d/S99NFCd
+fi
+
+# ---------------------------------------------------------------
+# Kill the current JIP processes
+# ---------------------------------------------------------------
+
+killbyname 6LoWPANd
+killbyname JIPd
+killbyname zigbee-jip-daemon
+killbyname NFCd
+
+# ---------------------------------------------------------------
+# Create the IoT database
+# ---------------------------------------------------------------
+
+if [ ! -f /usr/share/iot/iot_database.db ];
+then
+	iot_dm -f /usr/share/iot/iot_dm.cfg
+fi
+
+# ---------------------------------------------------------------
+# Create automatic startup scripts for our new IoT programs/daemons
+# The test is there to allow multiple calls of this script
+# ---------------------------------------------------------------
+
+if [ ! -f /etc/rc.d/S99iot_zb_initd ];
+then
+	ln -s /etc/init.d/iot_zb_initd /etc/rc.d/S99iot_zb_initd
+fi
+
+if [ ! -f /etc/rc.d/S99iot_sj_initd ];
+then
+	ln -s /etc/init.d/iot_sj_initd /etc/rc.d/S99iot_sj_initd
+fi
+
+if [ ! -f /etc/rc.d/S99iot_ci_initd ];
+then
+	ln -s /etc/init.d/iot_ci_initd /etc/rc.d/S99iot_ci_initd
+fi
+
+if [ ! -f /etc/rc.d/S99iot_nd_initd ];
+then
+	ln -s /etc/init.d/iot_nd_initd /etc/rc.d/S99iot_nd_initd
+fi
+
+if [ ! -f /etc/rc.d/S99iot_gd_initd ];
+then
+	ln -s /etc/init.d/iot_gd_initd /etc/rc.d/S99iot_gd_initd
+fi
+
+if [ ! -f /etc/rc.d/S99iot_dbp_initd ];
+then
+	ln -s /etc/init.d/iot_dbp_initd /etc/rc.d/S99iot_dbp_initd
+fi
+
+if [ ! -f /etc/rc.d/S99iot_su_initd ];
+then
+	ln -s /etc/init.d/iot_su_initd /etc/rc.d/S99iot_su_initd
+fi
+
+# ---------------------------------------------------------------
+# Upgrade the new Coordinator image
+# ---------------------------------------------------------------
+
+if [ -f /tmp/ZigbeeNodeControlBridge_JN5168.bin ];
+then
+	JennicModuleProgram.sh /tmp/ZigbeeNodeControlBridge_JN5168.bin
+	# Remove it to save space on /tmp
+	rm /tmp/ZigbeeNodeControlBridge_JN5168.bin
+fi
+

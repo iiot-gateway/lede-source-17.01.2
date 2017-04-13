@@ -1,0 +1,12 @@
+tp : confstart
+tp : add ui
+tp add sen            -> searea = 3
+tp add act            -< act aan 3
+tp : exit
+
+tp : confstart
+tp : add ui            -> searea = undef
+tp add act             -> act aan undef
+
+tp add act
+tp : exit

@@ -1,0 +1,42 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          swupdater
+# Required-Start:    $local_fs $network
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: swupdater
+# Description:       IOT swupdater
+### END INIT INFO
+# ------------------------------------------------------------------
+# Author:    nlv10677
+# Copyright: NXP B.V. 2014. All rights reserved
+# ------------------------------------------------------------------
+
+START=99
+
+PROG=iot_su.sh
+
+do_start () {
+	echo Starting /usr/bin/$PROG
+	if [ -z `pidof -x $PROG` ]; then
+		/usr/bin/$PROG > /dev/null &
+	fi
+}
+
+do_stop () {
+	echo Will not stop $PROG, must do by hand
+}
+
+case "$1" in
+  start)
+	do_start
+	;;
+  stop)
+	do_stop
+	;;
+  *)
+	echo "Usage: $PROG [start|stop]" >&2
+	exit 3
+	;;
+esac

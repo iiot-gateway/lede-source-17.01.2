@@ -1,0 +1,40 @@
+#!/bin/sh
+# ----------------------------------------------------------------------
+# Script that controls the FTBI CBUS pins and calls the JN516x flasher
+# ----------------------------------------------------------------------
+# Author:    nlv10677
+# Copyright: NXP B.V. 2015. All rights reserved
+# ----------------------------------------------------------------------
+
+echo "========== ProgScript start ============" >> /tmp/su.log
+echo "Step 1: Switch bootloader to programming state" >> /tmp/su.log
+
+# Control CB[2-3] to put JN516x in bootloader mode
+# Note: As a side-effect, it removes /dev/ttyUSB0
+iot_jf prog
+
+echo "Step 2: Re-install the ftdi_sio driver " >> /tmp/su.log
+rmmod ftdi_sio
+modprobe ftdi_sio
+
+echo "Step 3: Call the flasher program" >> /tmp/su.log
+if [ $1 ]
+then
+  echo "Step 4: Flash $1" >> /tmp/su.log
+  
+  iot_jp -I 38400 -P 1000000 -s /dev/ttyUSB0 -f $1 -v -V 2 >> /tmp/su.log
+  result=$?
+fi
+
+echo "Step 5: Switch bootloader back to normal state" >> /tmp/su.log
+# Control CB[2-3] to put JN516x in normal mode
+# Note: As a side-effect, it removes /dev/ttyUSB0
+iot_jf normal
+
+echo "Step 6: Re-install the ftdi_sio driver " >> /tmp/su.log
+rmmod ftdi_sio
+modprobe ftdi_sio
+
+echo "Step 7: result = $result" >> /tmp/su.log
+echo "========== ProgScript end ============" >> /tmp/su.log
+return $result

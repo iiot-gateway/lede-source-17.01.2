@@ -1,0 +1,7 @@
+"joinsecure" : { "channel"   : 1,
+               "keysequence" : 0,
+               "pan"         : 64000,
+               "extendedpan" : "123456789012345",
+               "networkkey"  : "1234567890123456789012345678901234567890",
+               "tcaddress"   : "123456789012345" }
+

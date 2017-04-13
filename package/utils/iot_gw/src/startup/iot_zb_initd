@@ -1,0 +1,34 @@
+#!/bin/sh /etc/rc.common
+# ------------------------------------------------------------------
+# Author:    nlv10677
+# Copyright: NXP B.V. 2014. All rights reserved
+# ------------------------------------------------------------------
+
+START=99
+
+PROG=iot_zb
+
+TAG=/usr/share/iot/.zcb_flashed
+
+start () {
+	# Check if first start (.zcb_flashed does not exist)
+	if [ ! -f ${TAG} ]; then
+		# cp all needed bin files
+		cp -f /usr/share/iot/*.bin /tmp
+		# Start update of USB control bridge
+		/usr/bin/JennicModuleAutoProgram.sh
+		if [ $? -eq 0 ]; then
+			# Create .zcb_flashed to prevent reflashing at each boot
+			touch ${TAG}
+		fi
+	fi
+    echo Starting /usr/bin/$PROG
+    if [ -z `pidof $PROG` ]; then
+        /usr/bin/$PROG > /dev/null &
+    fi
+}
+
+stop () {
+    echo Stop $PROG
+    killbyname $PROG
+}

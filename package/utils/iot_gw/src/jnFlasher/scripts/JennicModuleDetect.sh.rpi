@@ -1,0 +1,30 @@
+#!/bin/sh
+# ----------------------------------------------------------------------
+# Script that controls the FTBI CBUS pins and detects the JN516x
+# ----------------------------------------------------------------------
+# Author:    nlv10677
+# Copyright: NXP B.V. 2015. All rights reserved
+# ----------------------------------------------------------------------
+
+# Control CB[2-3] to put JN516x in bootloader mode
+# Note: As a side-effect, it removes /dev/ttyUSB0
+sudo iot_jf prog
+
+# Re-install the ftdi_sio driver
+sudo rmmod ftdi_sio
+sudo modprobe ftdi_sio
+
+# Call the detection program
+sudo iot_jd
+result=$?
+
+# Control CB[2-3] to put JN516x in normal mode
+# Note: As a side-effect, it removes /dev/ttyUSB0
+sudo iot_jf normal
+
+# Re-install the ftdi_sio driver
+sudo rmmod ftdi_sio
+sudo modprobe ftdi_sio
+
+# Report the flashing result
+return $result

@@ -1,0 +1,12 @@
+V3.11c - release
+---------------------------------------------------
+- ZCB 11403
+- Secure ECC commissioning support - DISABLED
+- New NTAG layout V10
+- NFC Reader support (instead of NFC tag)
+- Mobile webpages
+- Kelvin to lamp, auto-insert switch
+- UI updates
+- More mobile fixes
+
+Fri Jun 12 08:09:42 CEST 2015

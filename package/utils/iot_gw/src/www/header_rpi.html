@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/iot.css" />
+
+<title>IoT Gateway</title>
+
+<style type="text/css">
+body {
+    background-color: #dddddd;
+    }
+.buttongroup {
+    width: 100%;
+    display: inline;
+    vertical-align: baseline;
+    }
+.navbutton{
+    width: 9%;
+    vertical-align: baseline;
+    border:1px solid #a8c1d5;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-size:12px;
+    font-family:arial, helvetica, sans-serif;
+    padding: 10px 0px 10px 0px;
+    text-decoration:none;
+    display:inline-block;
+    text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+    text-align: center;
+    font-weight:bold;
+    color: #FFFFFF;
+    background-color: #CEDCE7; 
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#CEDCE7), to(#596a72));
+    background-image: -webkit-linear-gradient(top, #CEDCE7, #596a72);
+    background-image: -moz-linear-gradient(top, #CEDCE7, #596a72);
+    background-image: -ms-linear-gradient(top, #CEDCE7, #596a72);
+    background-image: -o-linear-gradient(top, #CEDCE7, #596a72);
+    background-image: linear-gradient(to bottom, #CEDCE7, #596a72);
+    filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#CEDCE7, endColorstr=#596a72);
+    }
+
+.navbutton:hover{
+    border:1px solid #8aabc5;
+    background-color: #acc4d6;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#acc4d6), to(#434f55));
+    background-image: -webkit-linear-gradient(top, #acc4d6, #434f55);
+    background-image: -moz-linear-gradient(top, #acc4d6, #434f55);
+    background-image: -ms-linear-gradient(top, #acc4d6, #434f55);
+    background-image: -o-linear-gradient(top, #acc4d6, #434f55);
+    background-image: linear-gradient(to bottom, #acc4d6, #434f55);
+    filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#acc4d6, endColorstr=#434f55);
+    }
+.logo {
+    float:right;
+    width: 100px;
+    }
+</style>
+
+</head>
+<body>
+
+<div class='buttongroup'>
+<a class="navbutton" href="cgi-bin/iot_control.cgi" target="iot_main">Control</a>
+<a class="navbutton" href="cgi-bin/iot_database.cgi" target="iot_main">Database</a>
+<a class="navbutton" href="cgi-bin/iot_plugs.cgi" target="iot_main">Plugs</a>
+<a class="navbutton" href="cgi-bin/iot_lamp.cgi" target="iot_main">Lamps</a>
+<a class="navbutton" href="cgi-bin/iot_logs.cgi" target="iot_main">Logs</a>
+<a class="navbutton" href="cgi-bin/iot_mobile.cgi" target="_blank">Mobile Site</a>
+
+<img class='logo' src='img/NXP_logo.gif' />
+</div>
+
+</body>
+</html>
+

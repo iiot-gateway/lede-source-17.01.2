@@ -1,0 +1,13 @@
+"tp" : "confmode"
+"tp+" : { "uict" : "677676767A",  "nm" : "UI bij Ed" }
+"tp+" : { "sen"  : "98623ADF987", "nm" : "Blauwe Sensor" }
+"tp+" : { "sen"  : "ABCDEF17689", "nm" : "Sensor nr 2" }
+"tp+" : { "uict" : "3986557BBBA", "nm" : "UI op de gang" }
+"tp+" : { "lmp"  : "1111111111",  "nm" : "Verwarmingsklep" }
+"tp" : "closeconf"
+
+"sen"  : { "mac" : "98623ADF987", "tmp" : 22119 }
+"ui"   : { "mac" : "3986557BBBA", "heat" : 26500 }
+"act"  : { "mac" : "1111111111",  "ctrl" : 0 }
+
+

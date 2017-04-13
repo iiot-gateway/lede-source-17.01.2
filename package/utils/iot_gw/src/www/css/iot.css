@@ -1,0 +1,192 @@
+body {
+    background: #FEFEFF;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    color: #666666;
+}
+
+table.full { width:100%; }
+table.inline { display: inline-block }
+table.transparent { background: rgba(255,255,255,0); }
+table.grey { background: #FEFEFF; }
+
+h1 { color: #666666; font-size: 12pt; }
+h2 { color: #888888; font-size: 10pt; }
+
+td           { font-size: 8pt; }
+td.head      { background: #aaFF66; }
+td.bigred    { color: #FF0000; font-size: 32pt; }
+td.bigblue   { color: #0000FF; font-size: 32pt; }
+td.biggreen  { color: #00FF00; font-size: 32pt; }
+td.bigorange { color: #FF8800; font-size: 32pt; }
+td.transparent { background: rgba(255,255,255,0.0); }
+td.grey      { background: #FEFEFF; }
+tr.head      { background: #aaFF66; }
+tr           { background: #FFFFFF; }
+tr.grey      { background: #FEFEFF; }
+
+a.btn {
+	background-color: #EEEEFF;
+	background-repeat: no-repeat;
+	background-position: 1px center;
+	border: 1px solid #CCCCCC;
+	border-radius: 3px;
+	text-decoration: none;
+}
+
+div.sensor {
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    background-color: #ffccaa;
+    border-radius: 4em 1em 4em 1em;
+    width: 36em;
+    height: 54px;
+}
+
+div.actuator {
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    background-color: #ffaaff;
+    border-radius: 4em 1em 4em 1em;
+    width: 24em;
+    height: 54px;
+    margin-bottom: 8px;
+}
+
+div.plug {
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    background-color: #ffffaa;
+    border-radius: 4em 1em 4em 1em;
+    width: 62em;
+    height: 54px;
+    margin-bottom: 8px;
+}
+
+div.lamp {
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    background-color: #aaffff;
+    border-radius: 4em 1em 4em 1em;
+    width: 62em;
+    height: 54px;
+    margin-bottom: 8px;
+}
+
+div.sensor_col1 {
+    position: absolute;
+    top: 8px;
+    left: 20px;
+    }
+
+div.sensor_col2 {
+    position: absolute;
+    top: 8px;
+    left: 130px;
+    font-size: 32px;
+    color: #dd3366;
+    }
+
+div.sensor_col3 {
+    position: absolute;
+    top: 8px;
+    left: 260px;
+    font-size: 32px;
+    color: #00aa00;
+    }
+
+div.actuator_col1 {
+    position: absolute;
+    top: 8px;
+    left: 20px;
+    }
+
+div.actuator_col2 {
+    position: absolute;
+    top: 8px;
+    left: 160px;
+    }
+
+div.actuator_col3 {
+    position: absolute;
+    top: 8px;
+    left: 200px;
+    }
+
+div.plug_col1 {
+    position: absolute;
+    top: 8px;
+    left: 20px;
+    }
+
+div.plug_col2 {
+    position: absolute;
+    top: 8px;
+    left: 160px;
+    font-size: 32px;
+    color: #FF0000;
+    }
+
+div.plug_col3 {
+    position: absolute;
+    top: 8px;
+    left: 330px;
+    font-size: 32px;
+    color: #0000FF;
+    }
+
+div.plug_col4 {
+    position: absolute;
+    top: 8px;
+    left: 520px;
+    }
+
+div.plug_col5 {
+    position: absolute;
+    top: 8px;
+    left: 560px;
+    }
+
+div.lamp_col1 {
+    position: absolute;
+    top: 8px;
+    left: 20px;
+    }
+
+div.lamp_col2 {
+    position: absolute;
+    top: 8px;
+    left: 160px;
+    font-size: 32px;
+    color: #FF0000;
+    }
+
+div.lamp_col3 {
+    position: absolute;
+    top: 8px;
+    left: 260px;
+    font-size: 32px;
+    color: #0000FF;
+    }
+
+div.lamp_col4 {
+    position: absolute;
+    top: 8px;
+    left: 480px;
+    }
+
+div.lamp_col5 {
+    position: absolute;
+    top: 8px;
+    left: 520px;
+    }
+
+div.lamp_col6 {
+    position: absolute;
+    top: 8px;
+    left: 560px;
+    }

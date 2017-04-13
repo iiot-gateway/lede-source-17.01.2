@@ -1,0 +1,6 @@
+"linkinfo" : { "version" : 1,
+               "type"    : 0,
+               "profile" : 1234,
+               "mac"     : "0123456789ABCDEF",
+               "linkkey" : "0123456789ABCDEF0123456789ABCDEF" }
+

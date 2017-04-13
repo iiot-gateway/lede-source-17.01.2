@@ -1,0 +1,25 @@
+#!/bin/sh /etc/rc.common
+# ------------------------------------------------------------------
+# Author:    nlv10677
+# Copyright: NXP B.V. 2014. All rights reserved
+# ------------------------------------------------------------------
+
+START=99
+
+PROG=iot_pt
+
+start () {
+    if [ -f /etc/rc.d/S${START}${PROG}_initd ]; then
+		rm /etc/rc.d/S${START}${PROG}_initd
+	else
+		echo Starting /usr/bin/$PROG
+		if [ -z `pidof $PROG` ]; then
+		    /usr/bin/$PROG > /dev/null &
+		fi
+    fi
+}
+
+stop () {
+    echo Stop $PROG
+    killbyname $PROG
+}

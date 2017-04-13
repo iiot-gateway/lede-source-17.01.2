@@ -1,0 +1,23 @@
+#!/bin/sh
+# ------------------------------------------------------------------
+# Author:    nlv10677
+# Copyright: NXP B.V. 2014. All rights reserved
+# ------------------------------------------------------------------
+
+# echo There are $# arguments to $0: $*
+# export pid=`ps -aux | grep $1 | awk 'NR==1{print $1}'`; echo $pid
+# export pid=`ps -aux | grep $1 | awk 'NR==1{print $1}'`; kill -9 $pid
+
+#export pid=`pidof $1`; kill -9 $pid
+
+#pid=`pidof $1`
+pid=`pidof $1 | awk '{print $1;}'`
+if [ ! -z $pid ]; then
+	kill -9 $pid
+fi
+
+#pid=`pidof $1 | awk '{print $1;}'`
+#while [ ! -z $pid ]; do
+#	kill -9 $pid
+#	pid=`pidof $1 | awk '{print $1;}'`
+#done

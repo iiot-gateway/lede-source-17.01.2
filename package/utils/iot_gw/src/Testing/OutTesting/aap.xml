@@ -1,0 +1,58 @@
+<data>
+    <sensor>
+        <mac>0123456789ABCDEF</mac>
+        <access>0</access>
+        <flags>1E</flags>
+        <temp>22000</temp>
+        <hum>77</hum>
+        <press>1000</press>
+        <vbat>3300</vbat>
+    </sensor>
+</data>
+<debug>Debug from coordinator</debug>
+<data>
+    <ui>
+        <mac>0123456789ABCDEF</mac>
+        <access>0</access>
+        <flags>18</flags>
+        <heat>23000</heat>
+        <cool>18000</cool>
+    </ui>
+</data>
+<control>
+    <mac>MAC from coordinator</mac>
+</control>
+<data>
+    <valve>
+        <mac>0123456789ABCDEF</mac>
+        <access>1</access>
+        <flags>1E</flags>
+        <subid>6</subid>
+        <onff>1</onff>
+        <percentage>37</percentage>
+    </valve>
+</data>
+<control>
+    <channel>Current channel setting of coordinator</channel>
+</control>
+<data>
+    <timedate>
+        <time>1234</time>
+        <date>14032014</date>
+    </timedate>
+</data>
+<data>
+    <zone>
+        <zoneid>1</zoneid>
+        <access>0</access>
+        <flags>1E</flags>
+        <name>John&apos;s room</name>
+        <status>123</status>
+    </zone>
+</data>
+<data>
+    <topo>
+        <mac>0123456789ABCDEF</mac>
+        <zoneid>1</zoneid>
+    </topo>
+</data>

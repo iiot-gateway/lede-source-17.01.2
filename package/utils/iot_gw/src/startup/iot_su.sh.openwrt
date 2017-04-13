@@ -1,0 +1,15 @@
+#!/bin/sh
+
+SCRIPT=/tmp/iot_update.sh
+
+while [ 1 ]
+do
+    echo Loop
+    if [ -f $SCRIPT ]; then
+        echo Update script found
+        chmod +x $SCRIPT
+        $SCRIPT > /dev/null
+        rm $SCRIPT
+    fi
+    sleep 5
+done

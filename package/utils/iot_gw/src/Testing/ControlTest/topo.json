@@ -1,0 +1,16 @@
+"tp"  : { "cmd" : "clearall" }
+"tp+" : { "room" : 1, "nm" : "Kitchen" }
+"tp+" : { "room" : 2, "nm" : "Living room" }
+"tp+" : { "room" : 3, "nm" : "Master bedroom" }
+"tp+" : { "man" : "00158D0000576245", "nm" : "Climatjoo",     "ty" : "h" }
+"tp+" : { "ui"  : "00158D000032C4E1", "nm" : "UI blauw",      "rm" : 2 }
+"tp+" : { "sen" : "00158D000032C4E1", "nm" : "Blauwe Sensor", "rm" : 2 }
+"tp+" : { "pmp" : "00158D0000576236", "nm" : "Radiator",      "rm" : 2,        "sid" : 1 }
+"tp+" : { "pmp" : "00158D0000576232", "nm" : "Verwarming",    "rm" : 2, "sid" : 1 }
+"tp+" : { "ui"  : "00158D000032C4E2", "nm" : "UI keuken",     "rm" : 1 }
+"tp+" : { "sen" : "00158D000032C4E2", "nm" : "Sensor",        "rm" : 2 }
+"tp+" : { "lmp" : "2222221111",       "nm" : "Lamp bij Ed",   "rm" : 3,     "ty" : "col" }
+"tp+" : { "plg" : "1111AAAAAA",       "nm" : "Plugmeter",     "rm" : 3 }
+"tp"  : { "cmd" : "endconf" }
+
+

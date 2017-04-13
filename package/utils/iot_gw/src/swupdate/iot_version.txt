@@ -1,0 +1,19 @@
+V5.33
+---------------------------------------------------
+- Iot on OpenWRT on Raspberry-Pi
+- "One Gateway"
+- NTAG layout V11
+- PN7120 NFC Reader support
+- Mobile and System webpages
+- With Jennic flasher for JN5168 and JN5169 dongles
+- Uses neighbour table to handle missed announce messages
+- More distinct audio feedback during NFC transactions
+- Fixed IP addresses in System webpage
+- Save timezone name in /etc/config/system
+- With latest ZCB from trunk
+- Fixed error in system webpage
+- Fixed error in flasher
+- Added re-install anyway button
+- Internet support via wifi dongle (requires V5.33 SD-card image)
+
+wo okt  7 15:17:45 CEST 2015

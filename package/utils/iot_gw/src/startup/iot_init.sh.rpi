@@ -1,0 +1,113 @@
+#!/bin/sh
+# ------------------------------------------------------------------
+# Author:    nlv10677
+# Copyright: NXP B.V. 2015. All rights reserved
+# ------------------------------------------------------------------
+
+# ---------------------------------------------------------------
+# Create some directories if they not already exists
+# ---------------------------------------------------------------
+
+if [ ! -d /usr/share/iot ]; then
+    sudo mkdir /usr/share/iot
+    sudo chown pi:pi /usr/share/iot
+fi
+
+if [ ! -d /var/www/img ]; then
+    sudo mkdir /var/www/img
+fi
+
+if [ ! -d /var/www/js ]; then
+    sudo mkdir /var/www/js
+fi
+
+if [ ! -d /var/www/css ]; then
+    sudo mkdir /var/www/css
+fi
+
+if [ ! -d /usr/lib/cgi-bin ]; then
+    sudo mkdir /usr/lib/cgi-bin
+fi
+
+# ---------------------------------------------------------------
+# Set the persmissions right of our uploaded images
+# ---------------------------------------------------------------
+
+chmod +x /home/pi/iot/etc/init.d/iot_*
+chmod +x /home/pi/iot/usr/bin/iot_*
+chmod +x /home/pi/iot/usr/bin/killbyname
+chmod +x /home/pi/iot/usr/bin/JennicModule*.sh
+chmod +x /home/pi/iot/www/cgi-bin/iot_*
+
+# ---------------------------------------------------------------
+# Save original index.html
+# ---------------------------------------------------------------
+
+if [ ! -f /var/www/index_prev.html ];
+then
+	sudo cp /var/www/index.html /var/www/index_prev.html
+fi
+
+# ---------------------------------------------------------------
+# Copy stuff to their final destination
+# ---------------------------------------------------------------
+
+sudo cp /home/pi/iot/etc/init.d/iot_*initd     /etc/init.d/
+sudo cp /home/pi/iot/usr/bin/iot_*             /usr/bin/
+sudo cp /home/pi/iot/usr/bin/killbyname        /usr/bin/
+sudo cp /home/pi/iot/usr/bin/JennicModule*.sh  /usr/bin/
+sudo cp /home/pi/iot/usr/share/iot/*           /usr/share/iot/
+sudo chown pi:pi /usr/share/iot/*
+sudo cp /home/pi/iot/www/img/*                 /var/www/img/
+sudo cp /home/pi/iot/www/css/*                 /var/www/css/
+sudo cp /home/pi/iot/www/js/*                  /var/www/js/
+sudo cp /home/pi/iot/www/*.html                /var/www/
+sudo cp -f /home/pi/iot/www/cgi-bin/iot_*      /usr/lib/cgi-bin/
+
+# ---------------------------------------------------------------
+# Create automatic startup scripts for our new IoT programs/daemons
+# The test is there to allow multiple calls of this script
+# ---------------------------------------------------------------
+
+if [ ! -f /etc/rc2.d/S01iot_zb_initd ];
+then
+	sudo update-rc.d iot_zb_initd defaults
+fi
+
+if [ ! -f /etc/rc2.d/S01iot_sj_initd ];
+then
+	sudo update-rc.d iot_sj_initd defaults
+fi
+
+if [ ! -f /etc/rc2.d/S01iot_ci_initd ];
+then
+	sudo update-rc.d iot_ci_initd defaults
+fi
+
+if [ ! -f /etc/rc2.d/S01iot_nd_initd ];
+then
+	sudo update-rc.d iot_nd_initd defaults
+fi
+
+if [ ! -f /etc/rc2.d/S01iot_gd_initd ];
+then
+	sudo update-rc.d iot_gd_initd defaults
+fi
+
+if [ ! -f /etc/rc2.d/S01iot_dbp_initd ];
+then
+	sudo update-rc.d iot_dbp_initd defaults
+fi
+
+if [ ! -f /etc/rc2.d/S01iot_su_initd ];
+then
+	sudo update-rc.d iot_su_initd defaults
+fi
+
+# ---------------------------------------------------------------
+# Upgrade the new Coordinator image
+# ---------------------------------------------------------------
+
+JennicModuleAutoProgram.sh
+
+
