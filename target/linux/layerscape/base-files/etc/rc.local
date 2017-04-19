@@ -1,4 +1,5 @@
 # Put your custom commands here that should be executed once
 # the system init finished. By default this file does nothing.
 modprobe pfe.ko
+modprobe pn5xx_i2c.ko
 exit 0
