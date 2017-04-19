@@ -154,7 +154,7 @@ OBJECTS = \
         linux_libnfc-nci/src/service/extns/src/phNxpExtns.o \
         linux_libnfc-nci/src/service/linux_nfc_api.o \
         linux_libnfc-nci/src/service/linux_nfc_factory_api.o \
-        linux_libnfc-nci/src/halimpl/pn54x/tml/phTmlNfc_i2c_rhm.o \
+        linux_libnfc-nci/src/halimpl/pn54x/tml/phTmlNfc_i2c.o \
         linux_libnfc-nci/src/halimpl/pn54x/utils/phNxpConfig_rhm.o
 
 

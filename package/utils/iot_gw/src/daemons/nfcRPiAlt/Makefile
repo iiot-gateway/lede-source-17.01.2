@@ -19,7 +19,6 @@ OBJECTS = nd_main.o \
 	audiofb.o \
 	ledfb.o \
 	tools.o \
-	nciConfig.o \
 	../../IotCommon/atoi.o \
 	../../IotCommon/nibbles.o \
 	../../IotCommon/jsonCreate.o \

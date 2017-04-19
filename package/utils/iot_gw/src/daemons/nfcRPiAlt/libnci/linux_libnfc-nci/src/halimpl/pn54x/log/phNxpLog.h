@@ -44,7 +44,7 @@ extern nci_log_level_t gLog_level;
 #define ENABLE_FWDNLD_TRACES  TRUE
 #define ENABLE_NCIX_TRACES    TRUE
 #define ENABLE_NCIR_TRACES    TRUE
-#define ENABLE_API_TRACES     FALSE
+#define ENABLE_API_TRACES     TRUE
 
 #define ENABLE_HCPX_TRACES    FALSE
 #define ENABLE_HCPR_TRACES    FALSE
