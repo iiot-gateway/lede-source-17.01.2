@@ -348,7 +348,7 @@ index 0000000..72f8970
 +	udelay(1000);
 +
 +	if (ret < 0) {
-+		pr_err("%s: i2c_master_recv returned %d\n", __func__, ret);
++	//	pr_err("%s: i2c_master_recv returned %d\n", __func__, ret);
 +		return ret;
 +	}
 +	if (ret > count) {
