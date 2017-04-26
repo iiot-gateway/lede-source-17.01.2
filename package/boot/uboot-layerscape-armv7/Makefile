@@ -15,7 +15,7 @@ PKG_RELEASE:=1
 PKG_SOURCE_PROTO:=git
 PKG_MIRROR_HASH:=462fea9bdf03ec4bc23f2f1bb3917c2ec57017eca1e11b8a609bf60cd51a94e7
 PKG_SOURCE_URL:=ssh://git@sw-stash.freescale.net/dnind/industry-uboot.git
-PKG_SOURCE_VERSION:=aa8ffd94bbcda10aae9b8c355cdec81514637ad5
+PKG_SOURCE_VERSION:=4ebc5c0fea263da867e41abb3f410b7cc4392def
 
 include $(INCLUDE_DIR)/u-boot.mk
 include $(INCLUDE_DIR)/package.mk
