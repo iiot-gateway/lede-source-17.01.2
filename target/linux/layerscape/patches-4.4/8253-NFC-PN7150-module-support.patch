@@ -331,8 +331,8 @@ index 0000000..72f8970
 +			if (gpio_get_value(pn54x_dev->irq_gpio))
 +				break;
 +
-+			pr_warning("%s: spurious interrupt detected\n",
-+					__func__);
++		/*	pr_warning("%s: spurious interrupt detected\n",
++					__func__);*/
 +		}
 +	}
 +
