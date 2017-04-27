@@ -25,7 +25,7 @@ index fefdb62..defbe00 100644
 +		reg = <0x28>;
 +		clock-frequency = <1000000>;
 +		interrupt-parent = <&gpio0>;
-+		interrupt-gpios = <&gpio0 28 0>; /*28*/
++		interrupt-gpios = <&gpio0 25 0>; /*25*/
 +		enable-gpios = <&gpio0 24 0>; /*24*/
 +	};
  };
