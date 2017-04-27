@@ -15,7 +15,7 @@ define Package/iot_gw
   SECTION:=utils
   CATEGORY:=Utilities
   TITLE:=Internet of Thing - Gateway software
-  DEPENDS:=+libstdcpp
+  DEPENDS:=+libftdi +libpthread +librt +libstdcpp +libusb-1.0 +libusb-compat
 endef
 
 define Package/iot_gw/description
