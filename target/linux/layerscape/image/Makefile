@@ -132,7 +132,7 @@ ifeq ($(SUBTARGET),32b)
 endif
   IMAGE/firmware.bin = append-ls-rcw $(1) | pad-to 1M | append-ls-uboot $(1) | pad-to 3M | \
   					append-ls-dtb $$(DEVICE_DTS) | pad-to 4M | append-kernel | pad-to 9M | \
-  					append-ls-rootfs-ext4 $(1) 23M | check-size 33554433
+  					append-ls-rootfs-ext4 $(1) 39M | check-size 50331649
 endef
 TARGET_DEVICES += ls1012ardb
 
