@@ -59,12 +59,23 @@ define Build/Prepare
 	$(CP) -R src/* $(PKG_BUILD_DIR)
 endef
 
+define Build/Configure
+	(cd $(PKG_BUILD_DIR)/daemons/nfcRPiAlt/libnci/linux_libnfc-nci/;\
+	chmod +x bootstrap;\
+	./bootstrap;\
+	./configure --enable-pn7150 --host aarch64-openwrt-linux \
+	);
+endef
+
 define Build/Compile
 	@echo Compiling $(PKG_NAME)
 	$(MAKE) -C $(PKG_BUILD_DIR) \
 		$(IOT_GW_CROSS_CONFIG) \
 		clean build
 
+	$(MAKE) -C $(PKG_BUILD_DIR)/daemons/nfcRPiAlt/libnci/linux_libnfc-nci \
+		CC="$(TARGET_CC)" \
+		CFLAGS="$(TARGET_CFLAGS) -Wall"
 endef
 
 define Package/iot_gw/install
@@ -75,6 +86,15 @@ define Package/iot_gw/install
 	chmod +x $(1)/usr/bin/iot_*
 	chmod +x $(1)/usr/bin/killbyname
 	chmod +x $(1)/www/cgi-bin/iot_*
+
+	mkdir -p $(1)/data
+	mkdir -p $(1)/data/nfc
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/daemons/nfcRPiAlt/libnci/linux_libnfc-nci/.libs/libnfc_nci_linux* $(1)/usr/lib/
+	$(INSTALL_DIR) $(1)/data/nfc
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/daemons/nfcRPiAlt/libnci/linux_libnfc-nci/conf/PN7150/libnfc-nxp.conf \
+		$(1)/data/nfc/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/daemons/nfcRPiAlt/libnci/linux_libnfc-nci/.libs/nfcDemoApp* $(1)/data/nfc/
 endef
 
 
