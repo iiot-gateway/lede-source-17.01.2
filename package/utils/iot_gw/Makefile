@@ -80,7 +80,6 @@ endef
 
 define Package/iot_gw/install
 	$(CP) $(PKG_BUILD_DIR)/swupdate/images/* $(1)/
-	rm $(1)/etc/init.d/iot_nd_initd
 	chmod o+w $(1)/tmp
 	chmod +x $(1)/etc/init.d/iot_*
 	chmod +x $(1)/usr/bin/iot_*
