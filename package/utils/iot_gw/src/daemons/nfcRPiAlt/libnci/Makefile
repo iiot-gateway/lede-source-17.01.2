@@ -5,7 +5,7 @@
 # Copyright: NXP B.V. 2015. All rights reserved
 # ------------------------------------------------------------------
 
-NFC_CHIP ?= PN7120
+NFC_CHIP ?= PN7150
 
 ifeq ($(NFC_CHIP), PN7120)
 libnci_chip_config_FLAGS += -DNFC_NXP_CHIP_TYPE=PN547C2 -DNXP_CHIP_NAME=\"pn7120\"
