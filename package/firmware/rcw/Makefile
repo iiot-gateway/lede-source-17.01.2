@@ -24,7 +24,7 @@ PKG_LICENSE_FILES:=Licenses/README
 
 PKG_FLAGS:=nonshared
 
-ifdef CONFIG_PACKAGE_libnfc-nci
+ifdef CONFIG_PACKAGE_kmod-nxp_pn5xx
 	RCW_LS1012_BIN_NAME:=ls1012ardb-rcw_nfc.bin
 else
 	RCW_LS1012_BIN_NAME:=ls1012ardb-rcw_kw41.bin
