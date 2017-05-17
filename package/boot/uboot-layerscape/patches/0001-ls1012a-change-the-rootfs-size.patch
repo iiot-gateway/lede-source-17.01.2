@@ -1,7 +1,9 @@
 From cddc27d4ab2526f1b0e096cdeb8a2a4e9e557ec0 Mon Sep 17 00:00:00 2001
 From: Changming Huang <jerry.huang@nxp.com>
 Date: Fri, 28 Apr 2017 21:51:19 +0800
-Subject: [PATCH] ls1012a: change the rootfs size to 39MB
+Subject: [PATCH] ls1012a: change the rootfs size
+
+Extend the size of rootfs to 55MB
 
 Signed-off-by: Changming Huang <jerry.huang@nxp.com>
 ---
@@ -17,7 +19,7 @@ index c0b61f5..3b490cf 100644
  	"root=/dev/mtdblock5 rootfstype=ext4 noinitrd console=ttyS0,115200 " \
  	"earlycon=uart8250,mmio,0x21c0500 mtdparts=1550000.quadspi:1M(rcw)," \
 -	"1M(u-boot),1M(u-boot-env),1M(dtb),5M(kernel),23M(ext4rfs),32M(user)" \
-+	"1M(u-boot),1M(u-boot-env),1M(dtb),5M(kernel),39M(ext4rfs),16M(user)" \
++	"1M(u-boot),1M(u-boot-env),1M(dtb),5M(kernel),55M(ext4rfs)" \
  	" && sf read $fdtaddr 0x300000 100000 && " \
  	"sf read $loadaddr 0x400000 500000 && bootm $loadaddr - $fdtaddr"
  
