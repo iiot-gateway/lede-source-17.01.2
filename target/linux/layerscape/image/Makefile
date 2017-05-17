@@ -7,6 +7,10 @@
 include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/image.mk
 
+FAT32_BLOCK_SIZE=1024
+FAT32_BLOCKS=$(shell echo $$(($(CONFIG_ARMV7_SD_BOOT_PARTSIZE)*1024*1024/$(FAT32_BLOCK_SIZE))))
+ROOTFS_EXT4_SIZE=$(shell echo $$((($(CONFIG_TARGET_ROOTFS_PARTSIZE)+$(CONFIG_ARMV7_SD_BOOT_PARTSIZE)+5)*1024*1024)))
+    
 define Build/append-ls-rcw
 	rm -f $@
 	dd if=$(KDIR)/$(1)-rcw.bin >> $@
@@ -30,6 +34,24 @@ define Build/append-ls-rootfs-ext4
 	dd if=$(KDIR)/$(word 1,$(1))-$(word 2,$(1)).root.ext4 >> $@
 endef
 
+define Build/append-ls-head
+	./gen_layerscape_sdcard_img_head.sh $(KDIR_TMP)/$(IMG_PREFIX)-$(PROFILE)-sdcard-head.bin $(CONFIG_ARMV7_SD_BOOT_PARTSIZE) $(CONFIG_TARGET_ROOTFS_PARTSIZE)
+	dd if=$(KDIR_TMP)/$(IMG_PREFIX)-$(PROFILE)-sdcard-head.bin  >> $@
+endef
+
+define Build/append-ls-ubootEnv
+	dd if=uboot-env.bin >> $@
+endef
+
+define Build/append-ls-bootImage
+#	$(BIN_DIR)/$(1).dtb = append-ls-dtb $(1)
+	rm -f $(KDIR_TMP)/$(IMG_PREFIX)-$(PROFILE)-boot.img
+	mkfs.fat $(KDIR_TMP)/$(IMG_PREFIX)-$(PROFILE)-boot.img -C $(FAT32_BLOCKS)
+    	mcopy -i $(KDIR_TMP)/$(IMG_PREFIX)-$(PROFILE)-boot.img $(DTS_DIR)/$(1).dtb ::
+	mcopy -i $(KDIR_TMP)/$(IMG_PREFIX)-$(PROFILE)-boot.img $(IMAGE_KERNEL) ::uImage
+	dd if=$(KDIR_TMP)/$(IMG_PREFIX)-$(PROFILE)-boot.img >> $@
+endef
+
 define Device/Default
   PROFILES = Default
   FILESYSTEMS := squashfs
@@ -48,19 +70,23 @@ endif
 ifeq ($(SUBTARGET),armv7)
   KERNEL_LOADADDR = 0x80008000
   KERNEL_ENTRY_POINT = 0x80008000
+  FILESYSTEMS := ext4
 endif
 endef
 
 ifeq ($(SUBTARGET),armv7)
-    define Device/ls1021aiot
-    	DEVICE_TITLE := ls1021aiot
-	DEVICE_PACKAGES += uboot-layerscape-$(SUBTARGET)-ls1021aiot
-	DEVICE_DTS = ls1021a-iot
-	IMAGE/firmware.bin = append-ls-uboot $(1) | pad-to 3M | \
-		append-ls-dtb $$(DEVICE_DTS) | pad-to 5M | \
-		append-kernel | pad-to 10M | \
-		append-rootfs | pad-rootfs | check-size 67108865
-    endef
+
+ROOTFS_PARTOFFSET=$(shell echo $$(($(CONFIG_ARMV7_SD_BOOT_PARTSIZE)+4)))
+define Device/ls1021aiot
+  DEVICE_TITLE := ls1021aiot
+  DEVICE_PACKAGES += uboot-layerscape-$(SUBTARGET)-ls1021aiot
+  DEVICE_DTS = ls1021a-iot
+  IMAGE/firmware.bin = append-ls-head | pad-to 4K | \
+		append-ls-uboot $(1) | pad-to 1M | \
+		append-ls-ubootEnv | pad-to 2M | \
+		append-ls-bootImage $$(DEVICE_DTS) | pad-to $(ROOTFS_PARTOFFSET)M | \
+		append-rootfs | pad-rootfs | check-size $(ROOTFS_EXT4_SIZE) 
+endef
 TARGET_DEVICES += ls1021aiot
 
 else
