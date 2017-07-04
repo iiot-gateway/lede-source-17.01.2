@@ -158,6 +158,7 @@ TARGET_DEVICES += ls1088ardb
 
 define Device/ls2088ardb
   DEVICE_TITLE := ls2088ardb-$(SUBTARGET)
+  FILESYSTEMS := squashfs
   DEVICE_PACKAGES += rcw-layerscape-ls2088ardb uboot-layerscape-$(SUBTARGET)-ls2088ardb mc-binary-ls2088ardb
 ifeq ($(SUBTARGET),64b)
   DEVICE_DTS = freescale/fsl-ls2088a-rdb
