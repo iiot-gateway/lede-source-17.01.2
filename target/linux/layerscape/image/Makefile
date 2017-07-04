@@ -83,7 +83,7 @@ define Device/ls1021aiot
   DEVICE_DTS = ls1021a-iot
   IMAGE/firmware.bin = append-ls-head | pad-to 4K | \
 		append-ls-uboot $(1) | pad-to 1M | \
-		append-ls-ubootEnv | pad-to 2M | \
+		append-ls-ubootEnv $(1) | pad-to 2M | \
 		append-ls-bootImage $$(DEVICE_DTS) | pad-to $(ROOTFS_PARTOFFSET)M | \
 		append-rootfs | pad-rootfs | check-size $(ROOTFS_EXT4_SIZE) 
 endef
