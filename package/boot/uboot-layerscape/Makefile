@@ -25,9 +25,11 @@ PKG_LICENSE_FILES:=Licenses/README
 include $(INCLUDE_DIR)/package.mk
 
 define uboot/Default
-	TITLE:=
-	CONFIG:=
-	IMAGE:=
+	BUILD_TARGET:=layerscape
+	BUILD_SUBTARGET:=64b
+	BUILD_DEVICES:=$(1)
+    	UBOOT_IMAGE:=u-boot-dtb.bin
+	HIDDEN:=y
 endef
 
 define uboot/ls1043ardb
