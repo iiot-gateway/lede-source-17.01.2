@@ -28,18 +28,20 @@ define uboot/Default
 	BUILD_TARGET:=layerscape
 	BUILD_SUBTARGET:=64b
 	BUILD_DEVICES:=$(1)
-    	UBOOT_IMAGE:=u-boot-with-spl-pbl.bin
+    IMAGE=u-boot-with-spl-pbl.bin
 	HIDDEN:=y
 endef
 
 define uboot/ls1043ardb
 	TITLE:=U-Boot $(PKG_NAME)-$(PKG_VERSION) for NXP ls1043ardb 64b Dev Board
 	CONFIG=ls1043ardb_sdcard
+	IMAGE=u-boot-with-spl-pbl.bin
 endef
 
 define uboot/ls1046ardb
 	TITLE:=U-Boot $(PKG_NAME)-$(PKG_VERSION) for NXP ls1046ardb 64b Dev Board
 	CONFIG=ls1046ardb_sdcard
+	IMAGE=u-boot-with-spl-pbl.bin
 endef
 
 define uboot/ls1012ardb
