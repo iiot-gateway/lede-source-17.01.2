@@ -46,12 +46,13 @@ endef
 
 define Build/append-ls-bootImage
 #	$(BIN_DIR)/$(1).dtb = append-ls-dtb $(1)
-	rm -f $(KDIR_TMP)/$(IMG_PREFIX)-$(PROFILE)-boot.img
-	mkfs.fat $(KDIR_TMP)/$(IMG_PREFIX)-$(PROFILE)-boot.img -C $(FAT32_BLOCKS)
-    	mcopy -i $(KDIR_TMP)/$(IMG_PREFIX)-$(PROFILE)-boot.img $(DTS_DIR)/$(1).dtb ::
-	mcopy -i $(KDIR_TMP)/$(IMG_PREFIX)-$(PROFILE)-boot.img $(IMAGE_KERNEL) ::uImage
-	mcopy -i $(KDIR_TMP)/$(IMG_PREFIX)-$(PROFILE)-boot.img backup ::
-	dd if=$(KDIR_TMP)/$(IMG_PREFIX)-$(PROFILE)-boot.img >> $@
+	rm -f $(KDIR_TMP)/$(DEVICE_TITLE)-$(SUBTARGET)-boot.img
+	mkfs.fat $(KDIR_TMP)/$(DEVICE_TITLE)-$(SUBTARGET)-boot.img -C $(FAT32_BLOCKS)
+    	mcopy -i $(KDIR_TMP)/$(DEVICE_TITLE)-$(SUBTARGET)-boot.img $(DTS_DIR)/$(1).dtb ::
+	mcopy -i $(KDIR_TMP)/$(DEVICE_TITLE)-$(SUBTARGET)-boot.img $(IMAGE_KERNEL) ::uImage
+	./gen_layerscape_version_json.sh $(DEVICE_TITLE)
+	mcopy -i $(KDIR_TMP)/$(DEVICE_TITLE)-$(SUBTARGET)-boot.img backup ::
+	dd if=$(KDIR_TMP)/$(DEVICE_TITLE)-$(SUBTARGET)-boot.img >> $@
 endef
 
 define Device/Default
