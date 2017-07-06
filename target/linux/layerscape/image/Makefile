@@ -21,6 +21,10 @@ define Build/append-ls-uboot
 	dd if=$(KDIR)/$(1)-$(SUBTARGET)-uboot.bin >> $@
 endef
 
+define Build/append-ls1012a-uboot
+	$(CP) $(KDIR)/$(1)-$(SUBTARGET)-uboot.bin $(BIN_DIR)/$(1)-$(SUBTARGET)-uboot.bin
+endef
+
 define Build/append-ls-fman
 	dd if=$(KDIR)/$(1)-fman.bin >> $@
 endef
@@ -45,14 +49,13 @@ define Build/append-ls-ubootEnv
 endef
 
 define Build/append-ls-bootImage
-#	$(BIN_DIR)/$(1).dtb = append-ls-dtb $(1)
-	rm -f $(KDIR_TMP)/$(DEVICE_TITLE)-$(SUBTARGET)-boot.img
-	mkfs.fat $(KDIR_TMP)/$(DEVICE_TITLE)-$(SUBTARGET)-boot.img -C $(FAT32_BLOCKS)
-    	mcopy -i $(KDIR_TMP)/$(DEVICE_TITLE)-$(SUBTARGET)-boot.img $(DTS_DIR)/$(1).dtb ::
-	mcopy -i $(KDIR_TMP)/$(DEVICE_TITLE)-$(SUBTARGET)-boot.img $(IMAGE_KERNEL) ::uImage
-	./gen_layerscape_version_json.sh $(DEVICE_TITLE)
-	mcopy -i $(KDIR_TMP)/$(DEVICE_TITLE)-$(SUBTARGET)-boot.img backup ::
-	dd if=$(KDIR_TMP)/$(DEVICE_TITLE)-$(SUBTARGET)-boot.img >> $@
+	rm -f $(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img
+	mkfs.fat $(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img -C $(FAT32_BLOCKS)
+    	mcopy -i $(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img $(DTS_DIR)/$(word 1,$(1)).dtb ::
+	mcopy -i $(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img $(IMAGE_KERNEL) ::uImage
+	./gen_layerscape_version_json.sh $(word 2,$(1))
+	mcopy -i $(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img backup ::
+	dd if=$(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img >> $@
 endef
 
 define Device/Default
@@ -85,7 +88,7 @@ define Device/ls1021aiot
   IMAGE/firmware.bin = append-ls-head | pad-to 4K | \
 		append-ls-uboot $(1) | pad-to 1M | \
 		append-ls-ubootEnv $(1) | pad-to 2M | \
-		append-ls-bootImage $$(DEVICE_DTS) | pad-to $(ROOTFS_PARTOFFSET)M | \
+		append-ls-bootImage $$(DEVICE_DTS) $(1) | pad-to $(ROOTFS_PARTOFFSET)M | \
 		append-rootfs | pad-rootfs | check-size $(ROOTFS_EXT4_SIZE) 
 endef
 TARGET_DEVICES += ls1021aiot
@@ -105,7 +108,7 @@ endif
 	  	append-ls-uboot $(1) | pad-to 1M | \
 		append-ls-ubootEnv $(1) | pad-to 1040K | \
 		append-ls-fman $(1) | pad-to 2M | \
-		append-ls-bootImage $$(DEVICE_DTS) | pad-to $(ROOTFS_PARTOFFSET)M | \
+		append-ls-bootImage $$(DEVICE_DTS) $(1) | pad-to $(ROOTFS_PARTOFFSET)M | \
 		append-rootfs | pad-rootfs | check-size $(ROOTFS_EXT4_SIZE)
 endef
 TARGET_DEVICES += ls1043ardb
@@ -123,7 +126,7 @@ endif
 	  	append-ls-uboot $(1) | pad-to 1M | \
 		append-ls-ubootEnv $(1) | pad-to 1040K | \
 		append-ls-fman $(1) | pad-to 2M | \
-		append-ls-bootImage $$(DEVICE_DTS) | pad-to $(ROOTFS_PARTOFFSET)M | \
+		append-ls-bootImage $$(DEVICE_DTS) $(1) | pad-to $(ROOTFS_PARTOFFSET)M | \
 		append-rootfs | pad-rootfs | check-size $(ROOTFS_EXT4_SIZE)
 endef
 TARGET_DEVICES += ls1046ardb
@@ -138,7 +141,8 @@ ifeq ($(SUBTARGET),32b)
   DEVICE_DTS = ../../../arm64/boot/dts/freescale/fsl-ls1012a-rdb
 endif
   IMAGE/firmware.bin = append-ls-head | pad-to 2M | \
-	  	append-ls-bootImage $$(DEVICE_DTS) | pad-to $(ROOTFS_PARTOFFSET)M | \
+		append-ls1012a-uboot $(1) | \
+	  	append-ls-bootImage $$(DEVICE_DTS) $(1) | pad-to $(ROOTFS_PARTOFFSET)M | \
 		append-rootfs | pad-rootfs | check-size $(ROOTFS_EXT4_SIZE)
 endef
 TARGET_DEVICES += ls1012ardb
