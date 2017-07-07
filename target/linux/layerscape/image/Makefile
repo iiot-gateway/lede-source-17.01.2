@@ -49,12 +49,14 @@ define Build/append-ls-ubootEnv
 endef
 
 define Build/append-ls-bootImage
-	rm -f $(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img
+	$(call Image/BuildDTB,$(DTS_DIR)/$(word 1,$(1)).dts,$(DTS_DIR)/$(word 1,$(1)).dtb)
+    	rm -f $(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img
 	mkfs.fat $(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img -C $(FAT32_BLOCKS)
     	mcopy -i $(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img $(DTS_DIR)/$(word 1,$(1)).dtb ::
 	mcopy -i $(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img $(IMAGE_KERNEL) ::uImage
-	./gen_layerscape_version_json.sh $(word 2,$(1))
-	mcopy -i $(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img backup ::
+	cp -r backup $(KDIR_TMP)/$(word 2,$(1))-backup
+	./gen_layerscape_version_json.sh $(KDIR_TMP)/$(word 2,$(1))-backup/version.json  $(word 2,$(1))
+	mcopy -i $(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img $(KDIR_TMP)/$(word 2,$(1))-backup ::backup
 	dd if=$(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img >> $@
 endef
 
