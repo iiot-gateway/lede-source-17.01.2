@@ -24,6 +24,10 @@ fi
 dd if=/dev/zero of=/dev/mmcblk0 bs=1K seek=2040 count=1
 rm -f $FILEPATH/updateInfo.img
 
+if [ "${updateStatus:0:2}"x == "33"x ];then
+	exit
+fi
+
 mount /dev/mmcblk0p1 /mnt
 updatePart=$(parse_json /mnt/backup/$VERSIONFILE "updatePart")
 updateVersion=$(parse_json /mnt/backup/$VERSIONFILE "updateVersion")
