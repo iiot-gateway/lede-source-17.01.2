@@ -41,7 +41,7 @@
  */
 int fileCreateMode( char * name, int mode ) {
     DEBUG_PRINTF( "Create file %s with mode %o\n", name, mode );
-    int fd = open( name, O_RDWR | O_CREAT );
+    int fd = open( name, O_RDWR | O_CREAT, S_IRUSR|S_IWUSR );
     if ( fd >= 0 ) {
         fchmod( fd, mode );
         close( fd );

@@ -63,7 +63,7 @@ define Build/Configure
 	(cd $(PKG_BUILD_DIR)/daemons/nfcRPiAlt/libnci/linux_libnfc-nci/;\
 	chmod +x bootstrap;\
 	./bootstrap;\
-	./configure --enable-pn7150 --host aarch64-openwrt-linux \
+	./configure --enable-pn7150 --host $(CONFIG_ARCH)-openwrt-linux \
 	);
 endef
 
