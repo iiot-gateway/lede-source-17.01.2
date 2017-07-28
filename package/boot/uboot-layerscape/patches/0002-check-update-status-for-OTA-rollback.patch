@@ -44,7 +44,7 @@ index 2116a9e..3343bfb 100644
 +
 +	offset	= 0x1FE000;
 +	size	= 0x200;
-+	mmc = find_mmc_device(dev);
++	mmc = find_mmc_device(dev); mmc_init(mmc);
 +	struct blk_desc *desc = mmc_get_blk_desc(mmc);
 +	blk_start   = ALIGN(offset, mmc->read_bl_len) / mmc->read_bl_len;
 +	blk_cnt     = ALIGN(size, mmc->read_bl_len) / mmc->read_bl_len;
