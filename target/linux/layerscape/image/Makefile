@@ -22,7 +22,8 @@ define Build/append-ls-uboot
 endef
 
 define Build/append-ls1012a-uboot
-	$(CP) $(KDIR)/$(1)-$(SUBTARGET)-uboot.bin $(BIN_DIR)/$(1)-$(SUBTARGET)-uboot.bin
+	dd if=$(KDIR)/$(1)-rcw.bin of=$(BIN_DIR)/$(1)-$(SUBTARGET)-rcw-uboot.bin bs=1M count=1 conv=sync
+	dd if=$(KDIR)/$(1)-$(SUBTARGET)-uboot.bin of=$(BIN_DIR)/$(1)-$(SUBTARGET)-rcw-uboot.bin bs=1M seek=1 count=3 conv=sync
 endef
 
 define Build/append-ls-fman
@@ -55,7 +56,7 @@ define Build/append-ls-bootImage
     	mcopy -i $(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img $(DTS_DIR)/$(word 1,$(1)).dtb ::
 	mcopy -i $(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img $(IMAGE_KERNEL) ::uImage
 	cp -r backup $(KDIR_TMP)/$(word 2,$(1))-backup
-	./gen_layerscape_version_json.sh $(KDIR_TMP)/$(word 2,$(1))-backup/version.json  $(word 2,$(1))
+	./gen_layerscape_version_json.sh $(KDIR_TMP)/$(word 2,$(1))-backup/version.json  $(word 2,$(1))-$(SUBTARGET)
 	mcopy -i $(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img $(KDIR_TMP)/$(word 2,$(1))-backup ::backup
 	dd if=$(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img >> $@
 endef

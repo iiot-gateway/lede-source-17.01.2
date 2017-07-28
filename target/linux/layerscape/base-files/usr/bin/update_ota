@@ -89,8 +89,14 @@ case $updatePart in
 		dd if=$FILEPATH/$imageName of=/dev/mmcblk0 bs=1M
 		;;
 	"u-boot")
-		dd if=$FILEPATH/$imageName of=/dev/mmcblk0 bs=512 seek=8
-		rm -f $FILEPATH/$imageName
+		result=$(echo $boardName | grep "ls1012ardb")
+		if [[ "$result"x != x ]];then
+			dd if=$FILEPATH/$imageName of=/dev/mtdblock0
+			rm -f $FILEPATH/$imageName
+		else
+			dd if=$FILEPATH/$imageName of=/dev/mmcblk0 bs=512 seek=8
+			rm -f $FILEPATH/$imageName
+		fi
 		;;
 	"kernel")
 		mv /mnt/uImage /mnt/uImage_old

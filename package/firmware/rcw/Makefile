@@ -24,10 +24,14 @@ PKG_LICENSE_FILES:=Licenses/README
 
 PKG_FLAGS:=nonshared
 
-ifdef CONFIG_PACKAGE_kmod-nxp_pn5xx
-	RCW_LS1012_BIN_NAME:=ls1012ardb-rcw_nfc.bin
-else
+ifdef CONFIG_PACKAGE_ip-full
 	RCW_LS1012_BIN_NAME:=ls1012ardb-rcw_kw41.bin
+else
+ifdef CONFIG_PACKAGE_bluez-utils
+	RCW_LS1012_BIN_NAME:=ls1012ardb-rcw_kw41.bin
+else
+	RCW_LS1012_BIN_NAME:=ls1012ardb-rcw_nfc.bin
+endif
 endif
 
 include $(INCLUDE_DIR)/package.mk
