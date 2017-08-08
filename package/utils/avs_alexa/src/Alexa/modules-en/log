@@ -1,0 +1,177 @@
+INFO: pocketsphinx.c(152): Parsed model-specific feature parameters from /home/b41466/alexa/AlexaPI-Clone/pocketsphinx-en/hmm/feat.params
+Current configuration:
+[NAME]			[DEFLT]		[VALUE]
+-agc			none		none
+-agcthresh		2.0		2.000000e+00
+-allphone				
+-allphone_ci		yes		yes
+-alpha			0.97		9.700000e-01
+-ascale			20.0		2.000000e+01
+-aw			1		1
+-backtrace		no		no
+-beam			1e-48		1.000000e-48
+-bestpath		yes		yes
+-bestpathlw		9.5		9.500000e+00
+-ceplen			13		13
+-cmn			live		current
+-cmninit		40,3,-1		40,3,-1
+-compallsen		no		no
+-debug					0
+-dict					/home/b41466/alexa/AlexaPI-Clone/pocketsphinx-en/keywords.dic
+-dictcase		no		no
+-dither			no		no
+-doublebw		no		no
+-ds			1		1
+-fdict					
+-feat			1s_c_d_dd	1s_c_d_dd
+-featparams				
+-fillprob		1e-8		1.000000e-08
+-frate			100		100
+-fsg					
+-fsgusealtpron		yes		yes
+-fsgusefiller		yes		yes
+-fwdflat		yes		yes
+-fwdflatbeam		1e-64		1.000000e-64
+-fwdflatefwid		4		4
+-fwdflatlw		8.5		8.500000e+00
+-fwdflatsfwin		25		25
+-fwdflatwbeam		7e-29		7.000000e-29
+-fwdtree		yes		yes
+-hmm					/home/b41466/alexa/AlexaPI-Clone/pocketsphinx-en/hmm
+-input_endian		little		little
+-jsgf					
+-keyphrase				
+-kws					
+-kws_delay		10		10
+-kws_plp		1e-1		1.000000e-01
+-kws_threshold		1e-30		1.000000e-30
+-latsize		5000		5000
+-lda					
+-ldadim			0		0
+-lifter			0		22
+-lm					/home/b41466/alexa/AlexaPI-Clone/pocketsphinx-en/keywords.lm
+-lmctl					
+-lmname					
+-logbase		1.0001		1.000100e+00
+-logfn					/home/b41466/alexa/AlexaPI-Clone/pocketsphinx-en/log
+-logspec		no		no
+-lowerf			133.33334	1.300000e+02
+-lpbeam			1e-40		1.000000e-40
+-lponlybeam		7e-29		7.000000e-29
+-lw			6.5		6.500000e+00
+-maxhmmpf		30000		30000
+-maxwpf			-1		-1
+-mdef					
+-mean					
+-mfclogdir				
+-min_endfr		0		0
+-mixw					
+-mixwfloor		0.0000001	1.000000e-07
+-mllr					
+-mmap			yes		yes
+-ncep			13		13
+-nfft			512		512
+-nfilt			40		20
+-nwpen			1.0		1.000000e+00
+-pbeam			1e-48		1.000000e-48
+-pip			1.0		1.000000e+00
+-pl_beam		1e-10		1.000000e-10
+-pl_pbeam		1e-10		1.000000e-10
+-pl_pip			1.0		1.000000e+00
+-pl_weight		3.0		3.000000e+00
+-pl_window		5		5
+-rawlogdir				
+-remove_dc		no		no
+-remove_noise		yes		yes
+-remove_silence		yes		yes
+-round_filters		yes		yes
+-samprate		16000		1.600000e+04
+-seed			-1		-1
+-sendump				
+-senlogdir				
+-senmgau				
+-silprob		0.005		5.000000e-03
+-smoothspec		no		no
+-svspec					
+-tmat					
+-tmatfloor		0.0001		1.000000e-04
+-topn			4		4
+-topn_beam		0		0
+-toprule				
+-transform		legacy		dct
+-unit_area		yes		yes
+-upperf			6855.4976	3.700000e+03
+-uw			1.0		1.000000e+00
+-vad_postspeech		50		50
+-vad_prespeech		20		20
+-vad_startspeech	10		10
+-vad_threshold		3.0		3.000000e+00
+-var					
+-varfloor		0.0001		1.000000e-04
+-varnorm		no		no
+-verbose		no		no
+-warp_params				
+-warp_type		inverse_linear	inverse_linear
+-wbeam			7e-29		7.000000e-29
+-wip			0.65		6.500000e-01
+-wlen			0.025625	2.562500e-02
+
+INFO: feat.c(715): Initializing feature stream to type: '1s_c_d_dd', ceplen=13, CMN='batch', VARNORM='no', AGC='none'
+INFO: acmod.c(152): Reading linear feature transformation from /home/b41466/alexa/AlexaPI-Clone/pocketsphinx-en/hmm/feature_transform
+INFO: mdef.c(518): Reading model definition: /home/b41466/alexa/AlexaPI-Clone/pocketsphinx-en/hmm/mdef
+INFO: bin_mdef.c(181): Allocating 142108 * 8 bytes (1110 KiB) for CD tree
+INFO: tmat.c(149): Reading HMM transition probability matrices: /home/b41466/alexa/AlexaPI-Clone/pocketsphinx-en/hmm/transition_matrices
+INFO: acmod.c(113): Attempting to use PTM computation module
+INFO: ms_gauden.c(127): Reading mixture gaussian parameter: /home/b41466/alexa/AlexaPI-Clone/pocketsphinx-en/hmm/means
+INFO: ms_gauden.c(242): 5126 codebook, 1 feature, size: 
+INFO: ms_gauden.c(244):  32x36
+INFO: ms_gauden.c(127): Reading mixture gaussian parameter: /home/b41466/alexa/AlexaPI-Clone/pocketsphinx-en/hmm/variances
+INFO: ms_gauden.c(242): 5126 codebook, 1 feature, size: 
+INFO: ms_gauden.c(244):  32x36
+INFO: ms_gauden.c(304): 0 variance values floored
+INFO: ptm_mgau.c(804): Number of codebooks exceeds 256: 5126
+INFO: acmod.c(115): Attempting to use semi-continuous computation module
+INFO: ms_gauden.c(127): Reading mixture gaussian parameter: /home/b41466/alexa/AlexaPI-Clone/pocketsphinx-en/hmm/means
+INFO: ms_gauden.c(242): 5126 codebook, 1 feature, size: 
+INFO: ms_gauden.c(244):  32x36
+INFO: ms_gauden.c(127): Reading mixture gaussian parameter: /home/b41466/alexa/AlexaPI-Clone/pocketsphinx-en/hmm/variances
+INFO: ms_gauden.c(242): 5126 codebook, 1 feature, size: 
+INFO: ms_gauden.c(244):  32x36
+INFO: ms_gauden.c(304): 0 variance values floored
+INFO: acmod.c(117): Falling back to general multi-stream GMM computation
+INFO: ms_gauden.c(127): Reading mixture gaussian parameter: /home/b41466/alexa/AlexaPI-Clone/pocketsphinx-en/hmm/means
+INFO: ms_gauden.c(242): 5126 codebook, 1 feature, size: 
+INFO: ms_gauden.c(244):  32x36
+INFO: ms_gauden.c(127): Reading mixture gaussian parameter: /home/b41466/alexa/AlexaPI-Clone/pocketsphinx-en/hmm/variances
+INFO: ms_gauden.c(242): 5126 codebook, 1 feature, size: 
+INFO: ms_gauden.c(244):  32x36
+INFO: ms_gauden.c(304): 0 variance values floored
+INFO: ms_senone.c(149): Reading senone mixture weights: /home/b41466/alexa/AlexaPI-Clone/pocketsphinx-en/hmm/mixture_weights
+INFO: ms_senone.c(200): Truncating senone logs3(pdf) values by 10 bits
+INFO: ms_senone.c(207): Not transposing mixture weights in memory
+INFO: ms_senone.c(268): Read mixture weights for 5126 senones: 1 features x 32 codewords
+INFO: ms_senone.c(320): Mapping senones to individual codebooks
+INFO: ms_mgau.c(144): The value of topn: 4
+INFO: phone_loop_search.c(114): State beam -225 Phone exit beam -225 Insertion penalty 0
+INFO: dict.c(320): Allocating 138824 * 32 bytes (4338 KiB) for word entries
+INFO: dict.c(333): Reading main dictionary: /home/b41466/alexa/AlexaPI-Clone/pocketsphinx-en/keywords.dic
+INFO: dict.c(213): Dictionary size 134723, allocated 1016 KiB for strings, 1679 KiB for phones
+INFO: dict.c(336): 134723 words read
+INFO: dict.c(358): Reading filler dictionary: /home/b41466/alexa/AlexaPI-Clone/pocketsphinx-en/hmm/noisedict
+INFO: dict.c(213): Dictionary size 134728, allocated 0 KiB for strings, 0 KiB for phones
+INFO: dict.c(361): 5 words read
+INFO: dict2pid.c(396): Building PID tables for dictionary
+INFO: dict2pid.c(406): Allocating 42^3 * 2 bytes (144 KiB) for word-initial triphones
+INFO: dict2pid.c(132): Allocated 42672 bytes (41 KiB) for word-final triphones
+INFO: dict2pid.c(196): Allocated 42672 bytes (41 KiB) for single-phone word triphones
+INFO: ngram_model_trie.c(354): Trying to read LM in trie binary format
+INFO: ngram_search_fwdtree.c(74): Initializing search tree
+INFO: ngram_search_fwdtree.c(101): 791 unique initial diphones
+INFO: ngram_search_fwdtree.c(186): Creating search channels
+INFO: ngram_search_fwdtree.c(323): Max nonroot chan increased to 152844
+INFO: ngram_search_fwdtree.c(333): Created 723 root, 152716 non-root channels, 53 single-phone words
+INFO: ngram_search_fwdflat.c(157): fwdflat: min_ef_width = 4, max_sf_win = 25
+INFO: ngram_search_fwdflat.c(302): Utterance vocabulary contains 0 words
+INFO: ngram_search_fwdflat.c(302): Utterance vocabulary contains 0 words
+INFO: ngram_search_fwdflat.c(302): Utterance vocabulary contains 0 words
+INFO: ngram_search_fwdflat.c(302): Utterance vocabulary contains 0 words
