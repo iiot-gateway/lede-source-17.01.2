@@ -1,0 +1,106 @@
+打开厨房电灯		d a k ai ch u f ang d ian d eng
+打开卧室电灯		d a k ai w o sh ib d ian d eng
+打开客厅电灯		d a k ai k e t ing d ian d eng
+打开洗手间电灯		d a k ai x i sh ou j ian d ian d eng
+打开厕所电灯		d a k ai c e s uo d ian d eng
+打开阳台电灯		d a k ai y ang t ai d ian d eng
+打开走廊电灯		d a k ai z ou l ang d ian d eng
+打开客房电灯		d a k ai k e f ang d ian d eng
+打开所有电灯		d a k ai s uo y ou  d ian d eng
+关闭所有电灯		g uan b i s uo y ou  d ian d eng
+关闭厨房电灯		g uan b i ch u f ang d ian d eng
+关闭卧室电灯		g uan b i w o sh ib d ian d eng
+关闭客厅电灯		g uan b i k e t ing d ian d eng
+关闭洗手间电灯		g uan b i x i sh ou j ian d ian d eng
+关闭厕所电灯		g uan b i c e s uo d ian d eng
+关闭阳台电灯		g uan b i y ang t ai d ian d eng
+关闭走廊电灯		g uan b i z ou l ang d ian d eng
+关闭客房电灯		g uan b i k e f ang d ian d eng
+打开洗衣机		d a k ai x i y i j i
+关闭洗衣机		g uan b i x i y i j i
+打开空气净化器		d a k ai k ong q i j ing h ua q i
+关闭空气净化器		g uan b i k ong q i j ing h ua q i
+打开冰箱		d a k ai b ing x iang
+关闭冰箱		g uan b i b ing x iang
+打开热水器		d a k ai r e sh ui q i
+关闭热水器		g uan b i r e sh ui q i
+打开饮水器		d a k ai y in sh ui q i
+关闭饮水器		g uan b i y in sh ui q i
+设置饮水器制冷模式		sh e zh ib y in sh ui q i zh ib l eng m o sh ib
+设置饮水器加热模式		sh e zh ib y in sh ui q i j ia r e m o sh ib
+打开空调		d a k ai k ong t iao
+关闭空调		g uan b i k ong t iao
+设置空调制冷模式		sh e zh ib k ong t iao zh ib l eng m o sh ib
+设置空调加热模式		sh e zh ib k ong t iao j ia r e m o sh ib
+空调升高一度		k ong t iao sh eng g ao y i d u
+空调降低一度		k ong t iao j iang d i y i d u
+空调升高五度		k ong t iao sh eng g ao y i d u
+空调降低五度		k ong t iao j iang d i y i d u
+打开台灯		d a k ai t ai d eng
+关闭台灯		g uan b i t ai d eng
+打开风扇		d a k ai f eng sh an
+关闭风扇		g uan b i f eng sh an
+调高风扇风速		t iao g ao f eng sh an f eng s u
+调低风扇风速		t iao d i f eng sh an f eng s u
+打开电视机		d a k ai d ian sh ib j i
+关闭电视机		g uan b i d ian sh ib j i
+下一个频道 		x ia y i g e p in d ao
+上一个频道 		sh ang y i g e p in d ao
+中央电视台		zh ong y ang d ian sh ib t ai
+中央电视台(2)		zh ong y ang d ian sh i t ai
+体育频道 		t i uxs ux p in d ao
+新闻频道 		x in w en p in d ao
+综合频道 		z ong h e p in d ao
+娱乐频道 		uxs ux l e p in d ao
+电影频道 		d ian y ing p in d ao
+调大电视机音量		t iao d a d ian sh ib j i y in l iang
+调小电视机音量		t iao x iao d ian sh ib j i y in l iang
+调大音乐音量		t iao d a y in uxs uxe y in l iang
+调小音乐音量		t iao x iao y in uxs uxe y in l iang
+下一曲		x ia y i q ux
+上一曲		sh ang y i q ux
+暂停音乐		z an t ing y in uxs uxe
+停止音乐		t ing zh ib y in uxs uxe
+播放音乐		b o f ang y in uxs uxe
+左声道		z uo sh eng d ao
+右声道		y ou sh eng d ao
+打开总开关		d a k ai z ong k ai g uan
+关闭总开关		g uan b i z ong k ai g uan
+打开总电源		d a k ai z ong d ian uxs an
+关闭总电源		g uan b i z ong d ian uxs an
+重新开始		ch ong x in k ai sh ib
+重新启动		ch ong x in q i d ong
+预定火车票		uxs ux d ing h uo ch e p iao
+预定飞机票		uxs ux d ing f ei j i p iao
+预定酒店		uxs ux d ing j iu d ian
+北京		b ei j ing
+深圳		sh en zh en
+香港		x iang g ang
+当前时间		d ang q ian sh i j ian
+当前日期		d ang q ian r ib q i
+语音合成		uxs ux y in h e ch eng
+语音识别		uxs ux y in sh ib b ie
+摄氏度		sh e sh ib d u
+百分之一		b ai f en zh ib y i
+百分之五		b ai f en zh ib w u
+百分之十		b ai f en zh ib sh ib
+百分之二十		b ai f en zh ib es er sh ib
+降低到		j iang d i d ao
+升高到		sh eng g ao d ao
+音箱		y in x iang
+机器人		j i q i r en
+芝麻开门		zh ib m a k ai m en
+天气预报		t ian q i uxs ux b ao
+空气污染指数		k ong q i w u r an zh ib sh u
+交通状况		j iao t ong zh uang k uang
+叮咚叮咚		d ing d ong d ing d ong
+HI		h ai
+ALFA		a er f a
+HELLO		h a l ou
+HELLO(2)		h ai l ou
+ALEXA		as a l ai k e s a
+ALEXA(2)		as a l i k e s a
+GREEBLE	    g e r ui b os ou
+GREEBLE(2)	    g e r ui b
+TURNONLIGHT     t un as ang z es e l ai t
+TURNOFFLIGHT    t un as ao f z es e l ai t
