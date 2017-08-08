@@ -1,0 +1,91 @@
+Language model created by QuickLM on Wed Jun  7 04:12:47 EDT 2017
+Copyright (c) 1996-2010 Carnegie Mellon University and Alexander I. Rudnicky
+
+The model is in standard ARPA format, designed by Doug Paul while he was at MITRE.
+
+The code that was used to produce this language model is available in Open Source.
+Please visit http://www.speech.cs.cmu.edu/tools/ for more information
+
+The (fixed) discount mass is 0.5. The backoffs are computed using the ratio method.
+This model based on a corpus of 14 sentences and 17 words
+
+\data\
+ngram 1=17
+ngram 2=25
+ngram 3=25
+
+\1-grams:
+-1.0357 </s> -0.3010
+-1.0357 <s> -0.2591
+-1.8808 AIR -0.2953
+-2.1818 ALEXA -0.2591
+-1.8808 CONDITIONER -0.2591
+-1.8808 FUN -0.2591
+-2.1818 GREEBLE -0.2591
+-1.8808 HEATER -0.2591
+-2.1818 HELLO -0.2591
+-2.1818 HI -0.2591
+-1.8808 LIGHT -0.2591
+-1.4829 OFF -0.2715
+-1.4829 ON -0.2715
+-1.8808 TELEVISION -0.2591
+-1.1818 THE -0.2715
+-1.1818 TURN -0.2715
+-1.8808 WATER -0.2953
+
+\2-grams:
+-1.4472 <s> ALEXA 0.0000
+-1.4472 <s> GREEBLE 0.0000
+-1.4472 <s> HELLO 0.0000
+-1.4472 <s> HI 0.0000
+-0.4472 <s> TURN 0.0000
+-0.3010 AIR CONDITIONER 0.0000
+-0.3010 ALEXA </s> -0.3010
+-0.3010 CONDITIONER </s> -0.3010
+-0.3010 FUN </s> -0.3010
+-0.3010 GREEBLE </s> -0.3010
+-0.3010 HEATER </s> -0.3010
+-0.3010 HELLO </s> -0.3010
+-0.3010 HI </s> -0.3010
+-0.3010 LIGHT </s> -0.3010
+-0.3010 OFF THE 0.0000
+-0.3010 ON THE 0.0000
+-0.3010 TELEVISION </s> -0.3010
+-1.0000 THE AIR 0.0000
+-1.0000 THE FUN 0.0000
+-1.0000 THE LIGHT 0.0000
+-1.0000 THE TELEVISION 0.0000
+-1.0000 THE WATER 0.0000
+-0.6021 TURN OFF 0.0000
+-0.6021 TURN ON 0.0000
+-0.3010 WATER HEATER 0.0000
+
+\3-grams:
+-0.3010 <s> ALEXA </s>
+-0.3010 <s> GREEBLE </s>
+-0.3010 <s> HELLO </s>
+-0.3010 <s> HI </s>
+-0.6021 <s> TURN OFF
+-0.6021 <s> TURN ON
+-0.3010 AIR CONDITIONER </s>
+-1.0000 OFF THE AIR
+-1.0000 OFF THE FUN
+-1.0000 OFF THE LIGHT
+-1.0000 OFF THE TELEVISION
+-1.0000 OFF THE WATER
+-1.0000 ON THE AIR
+-1.0000 ON THE FUN
+-1.0000 ON THE LIGHT
+-1.0000 ON THE TELEVISION
+-1.0000 ON THE WATER
+-0.3010 THE AIR CONDITIONER
+-0.3010 THE FUN </s>
+-0.3010 THE LIGHT </s>
+-0.3010 THE TELEVISION </s>
+-0.3010 THE WATER HEATER
+-0.3010 TURN OFF THE
+-0.3010 TURN ON THE
+-0.3010 WATER HEATER </s>
+
+\end\
+
