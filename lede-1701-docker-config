@@ -5124,3 +5124,4 @@ CONFIG_PACKAGE_ubi-utils=y
 # font-utils
 #
 # CONFIG_PACKAGE_fontconfig is not set
+CONFIG_PACKAGE_libustream-openssl=y
