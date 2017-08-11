@@ -1,7 +1,6 @@
 #!/bin/sh
 
 FILEPATH=/tmp
-URL=https://github.com/xiaoliangyang/yangxl/raw/master
 UPDATEFILE=update.json
 VERSIONFILE=version.json
 
@@ -12,9 +11,18 @@ write_json(){
 	sed -i "/$2\":/ s/\(.*:\).*/\1$3/" $1
 }
 
+mount /dev/mmcblk0p1 /mnt
+if [ ! -f "/mnt/backup/$VERSIONFILE" ];then
+	echo "file $VERSIONFILE does not exist"
+	exit
+fi
+
+URL=$(parse_json /mnt/backup/$VERSIONFILE "URL")
+
 wget -P $FILEPATH --no-check-certificate $URL/$UPDATEFILE
 if [ ! -f $FILEPATH/$UPDATEFILE ];then
 	echo "get $UPDATEFILE failed"
+	umount /dev/mmcblk0p1
 	exit
 fi
 
@@ -49,11 +57,6 @@ case $updatePart in
 esac
 
 updateVersion=$(parse_json $FILEPATH/$UPDATEFILE "updateVersion")
-mount /dev/mmcblk0p1 /mnt
-if [ ! -f "/mnt/backup/$VERSIONFILE" ];then
-	echo "file $VERSIONFILE does not exist"
-	exit
-fi
 
 nowVersion=$(parse_json /mnt/backup/$VERSIONFILE $updatePart)
 boardName=$(parse_json /mnt/backup/$VERSIONFILE "boardname")
@@ -104,9 +107,10 @@ case $updatePart in
 		umount /dev/mmcblk0p1
 		;;
 	"filesystem")
+		cp /sbin/reboot /tmp/
 		mount -o ro,remount /
 		dd if=$FILEPATH/$imageName of=/dev/mmcblk0p2 bs=1M
 		;;
 esac
 
-reboot -f
+/tmp/reboot -f

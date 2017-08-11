@@ -2,5 +2,5 @@
 # the system init finished. By default this file does nothing.
 modprobe pfe.ko
 modprobe pn5xx_i2c.ko
-/usr/bin/startupVersioncheck.sh
+/usr/bin/ota-versioncheck
 exit 0
