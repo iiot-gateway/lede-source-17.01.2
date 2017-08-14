@@ -54,7 +54,7 @@
 #include "FSCIFrame.h"
 
 
-#define DEBUG 1
+#define DEBUG 0
 #define PROVISION 1
 #define CLOSE_OPEN_PORT 0
 
