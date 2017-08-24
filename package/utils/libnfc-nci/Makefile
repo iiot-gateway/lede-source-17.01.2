@@ -32,7 +32,7 @@ endef
 define Build/Configure
 	(cd $(PKG_BUILD_DIR);\
 	./bootstrap;\
-	./configure --enable-pn7150 --host aarch64-openwrt-linux \
+	./configure --enable-pn7150 --host $(CONFIG_ARCH)-openwrt-linux \
 	);
 endef
 
