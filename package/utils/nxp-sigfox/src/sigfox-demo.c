@@ -124,32 +124,32 @@ void parse_config(char *config_file)
 
 void set_gpio_ack(void)
 {
-	system("echo 441 > /sys/class/gpio/export");
-	system("echo in > /sys/class/gpio/gpio441/direction");
+	system("echo 434 > /sys/class/gpio/export");
+	system("echo in > /sys/class/gpio/gpio434/direction");
 }
 
 int get_response(int fd)
 {
-//	int fd_gpio = open("/sys/class/gpio/gpio441/value", O_RDONLY);
+	int fd_gpio;
 	char value_str[3];
 	int value;
 	int len;
 	int ret = -1;
-/*	if(fd_gpio == -1)
+
+	do
 	{
-		printf("open gpio441 error\n");
-		close(fd);
-		exit(1);
-	}
-	
-	do{
-		usleep(10000);
+		sleep(1);
+		fd_gpio = open("/sys/class/gpio/gpio434/value", O_RDONLY);
+		if(fd_gpio == -1)
+		{
+			printf("open gpio434 error\n");
+			close(fd);
+			exit(1);
+		}
 		read(fd_gpio, value_str, 3);
 		value = atoi(value_str);
+		close(fd_gpio);
 	}while(value == 1);
-*/
-	sleep(4);
-	value = 0;
 
 	if(value == 0)
 	{
@@ -161,7 +161,6 @@ int get_response(int fd)
 			ret = default_rx[0];
 		}
 	}
-//	close(fd_gpio);
 
 	return ret;
 }
@@ -221,10 +220,10 @@ int main(int argc, char *argv[])
 	/* wakeup sleep */
 	printf("wakeup sigfox device:\n");
 	transfer(fd, wakeup_tx, default_rx, wakeup_tx[0]);
-	sleep(4);
+	sleep(3);
 	printf("...........[ok]\n");
 
-	//set_gpio_ack();
+	set_gpio_ack();
 
 	/* Test SPI connective */
 	printf("Test SPI connective:\n");
@@ -266,7 +265,7 @@ int main(int argc, char *argv[])
 		transfer(fd, payload_tx, default_rx, payload_tx[0]);
 		printf("sending message:0x%02x 0x%02x 0x%02x 0x%02x 0x%02x\n",payload_tx[2],
 			payload_tx[3],payload_tx[4],payload_tx[5],payload_tx[6]);
-		sleep(5);
+		
 		ret = get_response(fd);
 		if(ret != 0 )
 		{
