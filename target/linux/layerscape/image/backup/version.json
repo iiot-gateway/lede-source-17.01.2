@@ -1,0 +1,10 @@
+{
+	"updatePart":"null",
+	"updateVersion":"null",
+	"all":"0.3.0",
+	"u-boot":"0.3.0",
+	"kernel":"0.3.0",
+	"filesystem":"0.3.0",
+	"boardname":"null"
+	"URL":"http://www.nxp.com/lgfiles/iiot/v0.3"
+}

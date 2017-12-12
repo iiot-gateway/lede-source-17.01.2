@@ -1,0 +1,59 @@
+From acb8cb31dc99966333bef7887a5b32dddbebc07a Mon Sep 17 00:00:00 2001
+From: Xiaoliang Yang <xiaoliang.yang_1@nxp.com>
+Date: Thu, 6 Jul 2017 11:42:45 +0800
+Subject: [PATCH] ls1012:change uboot env
+
+change uboot env to get kernel and filesystem from SD card.
+
+Signed-off-by: Xiaoliang Yang <xiaoliang.yang_1@nxp.com>
+---
+ include/configs/ls1012a_common.h | 25 ++++++++++++++-----------
+ 1 file changed, 14 insertions(+), 11 deletions(-)
+
+diff --git a/include/configs/ls1012a_common.h b/include/configs/ls1012a_common.h
+index 564d679..677a62e 100644
+--- a/include/configs/ls1012a_common.h
++++ b/include/configs/ls1012a_common.h
+@@ -113,16 +113,17 @@
+ 
+ #define CONFIG_DISPLAY_CPUINFO
+ 
+-#define WRTBOOT_EXT4RFS "pfe stop && sf probe 0:0 && setenv bootargs " \
+-	"root=/dev/mtdblock5 rootfstype=ext4 noinitrd console=ttyS0,115200 " \
+-	"earlycon=uart8250,mmio,0x21c0500 mtdparts=1550000.quadspi:1M(rcw)," \
+-	"1M(u-boot),1M(u-boot-env),1M(dtb),5M(kernel),23M(ext4rfs),32M(user)" \
+-	" && sf read $fdtaddr 0x300000 100000 && " \
+-	"sf read $loadaddr 0x400000 500000 && bootm $loadaddr - $fdtaddr"
+-
+-#define WRTUPDATE_DEFAULT " sf probe 0:0 && tftp 0xa0000000 <tftp_folder>/" \
+-	"lede-layerscape-64b-ls1012ardb-squashfs-firmware.bin && protect off all" \
+-	" && sf erase 0 $filesize && sf write 0xa0000000 0 $filesize; reset"
++#define WRTBOOT_EXT4RFS "pfe stop && setenv bootargs " \
++	"root=/dev/mmcblk0p2 rootfstype=ext4 noinitrd console=ttyS0,115200 " \
++	"earlycon=uart8250,mmio,0x21c0500;" \
++	"fatload mmc 0:1 ${loadaddr} ${bootfile};fatload mmc 0:1 $fdtaddr $fdtfile;" \
++	"bootm $loadaddr - $fdtaddr"
++
++#define WRTUPDATE_ROLLBACK "pfe stop && setenv bootargs " \
++	"root=/dev/ram0 rootwait console=ttyS0,115200 " \
++	"earlycon=uart8250,mmio,0x21c0500;"	\
++	"fatload mmc 0:1 ${loadaddr} ${bootfile};fatload mmc 0:1 $fdtaddr $fdtfile;fatload mmc 0:1 0x88000000 backup/root.ext4.gz.uboot;" \
++	"bootm $loadaddr 0x88000000 $fdtaddr"
+ 
+ /* Initial environment variables */
+ #define CONFIG_EXTRA_ENV_SETTINGS		\
+@@ -140,8 +141,10 @@
+ 	"kernel_size=0x2800000\0"		\
+ 	"loadaddr=82000000\0"			\
+ 	"fdtaddr=8f000000\0"			\
++	"bootfile=uImage\0"	\
++	"fdtfile=fsl-ls1012a-rdb.dtb\0"	\
+ 	"wrtboot_ext4rfs=" WRTBOOT_EXT4RFS "\0"	\
+-	"wrtupdate=" WRTUPDATE_DEFAULT "\0"	\
++	"rollbackboot=" WRTUPDATE_ROLLBACK "\0"	\
+ 	"console=ttyAMA0,38400n8\0"
+ 
+ #define CONFIG_BOOTARGS		"console=ttyS0,115200 root=/dev/ram0 " \
+-- 
+2.1.0.27.g96db324
+

@@ -79,7 +79,7 @@ define Build/Compile
 endef
 
 define Package/uboot/install/default
-	$(CP) $(PKG_BUILD_DIR)/$(UBOOT_CONFIG) $(KDIR)/$(1)-32b-uboot.bin
+	$(CP) ./images/$(UBOOT_CONFIG) $(KDIR)/$(1)-32b-uboot.bin
 endef
 
 define Package/uboot/install/template
