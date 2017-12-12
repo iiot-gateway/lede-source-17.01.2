@@ -1,0 +1,29 @@
+From 663881e1d4786540ac15719dfbbf4c7d806df861 Mon Sep 17 00:00:00 2001
+From: Xiaoliang Yang <xiaoliang.yang_1@nxp.com>
+Date: Fri, 21 Jul 2017 14:15:29 +0800
+Subject: [PATCH] enable watchdog and set timeout
+
+In order to use OTA rollback, enable watchdog in u-boot, and set timeout
+as 8.5s to cover kernel start time.
+
+Signed-off-by: Xiaoliang Yang <xiaoliang.yang_1@nxp.com>
+---
+ common/autoboot.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/common/autoboot.c b/common/autoboot.c
+index c52bad8..91bff43 100644
+--- a/common/autoboot.c
++++ b/common/autoboot.c
+@@ -350,6 +350,8 @@ void autoboot_command(const char *s)
+ 
+ 		run_command_list(s, -1, 0);
+ 
++		writew( 0x3410, WDOG1_BASE_ADDR);	/* enable watchdog and set timeout to 8.5s */
++
+ #if defined(CONFIG_AUTOBOOT_KEYED) && !defined(CONFIG_AUTOBOOT_KEYED_CTRLC)
+ 		disable_ctrlc(prev);	/* restore Control C checking */
+ #endif
+-- 
+2.1.0.27.g96db324
+
