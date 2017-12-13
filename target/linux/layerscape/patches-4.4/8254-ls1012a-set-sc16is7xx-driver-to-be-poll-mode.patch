@@ -1,0 +1,29 @@
+From 9a930a4628b02f0af7d6d079ea55ce9438c36887 Mon Sep 17 00:00:00 2001
+From: Xiaoliang Yang <xiaoliang.yang_1@nxp.com>
+Date: Fri, 28 Apr 2017 13:49:41 +0800
+Subject: [PATCH] ls1012a:set sc16is7xx driver to be poll mode
+
+sc16is7xx has a workaround when using IRQ mode. Sometimes it could
+not get interrupts when communicated with KW41. Change it to poll
+mode to use BLE/Thread on ls1012aRDB board.
+
+Signed-off-by: Xiaoliang Yang <xiaoliang.yang_1@nxp.com>
+---
+ drivers/tty/serial/sc16is7xx.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
+index 5e16f0c..ee2ebe0 100644
+--- a/drivers/tty/serial/sc16is7xx.c
++++ b/drivers/tty/serial/sc16is7xx.c
+@@ -34,6 +34,7 @@
+ 
+ #define SC16IS7XX_NAME			"sc16is7xx"
+ #define SC16IS7XX_MAX_DEVS		8
++#define SC16IS7XX_POLL_MODE
+ 
+ /* SC16IS7XX register definitions */
+ #define SC16IS7XX_RHR_REG		(0x00) /* RX FIFO */
+-- 
+2.1.0.27.g96db324
+
