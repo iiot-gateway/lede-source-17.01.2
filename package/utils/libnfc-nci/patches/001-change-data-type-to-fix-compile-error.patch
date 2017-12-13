@@ -1,0 +1,67 @@
+From aaf714b9726236499cbf658aab91c11ee6850913 Mon Sep 17 00:00:00 2001
+From: Xiaoliang Yang <xiaoliang.yang_1@nxp.com>
+Date: Thu, 21 Dec 2017 15:38:21 +0800
+Subject: [PATCH] change data type to fix compile error
+
+1.add typedef of key_t to fix compile error.
+2.change to use PTHREAD_MUTEX_RECURSIVE.
+3.set configuration file path:/data/nfc/
+
+Signed-off-by: Xiaoliang Yang <xiaoliang.yang_1@nxp.com>
+---
+ src/halimpl/pn54x/tml/phDal4Nfc_messageQueueLib.h |    2 ++
+ src/halimpl/pn54x/utils/phNxpConfig.cpp           |    2 ++
+ src/libnfc-nci/gki/ulinux/gki_ulinux.c            |    2 +-
+ 3 files changed, 5 insertions(+), 1 deletions(-)
+ mode change 100644 => 100755 src/halimpl/pn54x/tml/phDal4Nfc_messageQueueLib.h
+ mode change 100644 => 100755 src/halimpl/pn54x/utils/phNxpConfig.cpp
+ mode change 100644 => 100755 src/libnfc-nci/gki/ulinux/gki_ulinux.c
+
+diff --git a/src/halimpl/pn54x/tml/phDal4Nfc_messageQueueLib.h b/src/halimpl/pn54x/tml/phDal4Nfc_messageQueueLib.h
+old mode 100644
+new mode 100755
+index e121223..f2232fb
+--- a/src/halimpl/pn54x/tml/phDal4Nfc_messageQueueLib.h
++++ b/src/halimpl/pn54x/tml/phDal4Nfc_messageQueueLib.h
+@@ -24,6 +24,8 @@
+ #include <linux/ipc.h>
+ #include <phNfcTypes.h>
+ 
++typedef	int	key_t;
++
+ intptr_t phDal4Nfc_msgget(key_t key, int msgflg);
+ void phDal4Nfc_msgrelease(intptr_t msqid);
+ int phDal4Nfc_msgctl(intptr_t msqid, int cmd, void *buf);
+diff --git a/src/halimpl/pn54x/utils/phNxpConfig.cpp b/src/halimpl/pn54x/utils/phNxpConfig.cpp
+old mode 100644
+new mode 100755
+index c3332bd..05b02b2
+--- a/src/halimpl/pn54x/utils/phNxpConfig.cpp
++++ b/src/halimpl/pn54x/utils/phNxpConfig.cpp
+@@ -46,6 +46,8 @@
+ 
+ #include <phNxpLog.h>
+ 
++#define GENERIC_TARGET 1
++
+ #if GENERIC_TARGET
+ const char alternative_config_path[] = "/data/nfc/";
+ #else
+diff --git a/src/libnfc-nci/gki/ulinux/gki_ulinux.c b/src/libnfc-nci/gki/ulinux/gki_ulinux.c
+old mode 100644
+new mode 100755
+index 5e59e56..afe1b13
+--- a/src/libnfc-nci/gki/ulinux/gki_ulinux.c
++++ b/src/libnfc-nci/gki/ulinux/gki_ulinux.c
+@@ -168,7 +168,7 @@ void GKI_init(void)
+     pthread_mutexattr_init(&attr);
+ 
+ #ifndef __CYGWIN__
+-    pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE_NP);
++    pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+ #endif
+     p_os = &gki_cb.os;
+     pthread_mutex_init(&p_os->GKI_mutex, &attr);
+-- 
+1.7.1
+
