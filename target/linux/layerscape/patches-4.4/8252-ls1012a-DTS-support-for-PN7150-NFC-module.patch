@@ -1,0 +1,58 @@
+From dfb3ef23b5d5960fb3d2ff1e5683ec73f0071592 Mon Sep 17 00:00:00 2001
+From: Changming Huang <jerry.huang@nxp.com>
+Date: Mon, 10 Apr 2017 11:35:41 +0800
+Subject: [PATCH] ls1012a: DTS support for PN7150 NFC module
+
+Add the NXP PN7150 NFC module
+
+Signed-off-by: Changming Huang <jerry.huang@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/fsl-ls1012a-rdb.dts | 9 +++++++++
+ arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi    | 4 ++--
+ 2 files changed, 11 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1012a-rdb.dts
+index fefdb62..defbe00 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1012a-rdb.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a-rdb.dts
+@@ -76,6 +76,15 @@
+        interrupt-controller;
+        #interrupt-cells = <2>;
+ 	};
++
++	pn7150: pn7150@28 {
++		compatible = "nxp,pn7150", "nxp,pn544";
++		reg = <0x28>;
++		clock-frequency = <1000000>;
++		interrupt-parent = <&gpio0>;
++		interrupt-gpios = <&gpio0 25 0>; /*25*/
++		enable-gpios = <&gpio0 24 0>; /*24*/
++	};
+ };
+ 
+ &dspi0 {
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
+index dccf979..cd50750 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
+@@ -334,7 +334,7 @@
+ 			interrupts = <0 56 0x4>;
+ 			clock-names = "i2c";
+ 			clocks = <&clockgen 4 0>;
+-			status = "disabled";
++			status = "enabled";
+ 		};
+ 
+ 		i2c1: i2c@2190000 {
+@@ -345,7 +345,7 @@
+ 			interrupts = <0 57 0x4>;
+ 			clock-names = "i2c";
+ 			clocks = <&clockgen 4 0>;
+-			status = "disabled";
++			status = "enabled";
+ 		};
+ 
+ 
+-- 
+2.9.3
+

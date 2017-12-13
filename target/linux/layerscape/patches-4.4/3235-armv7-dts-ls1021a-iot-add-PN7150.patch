@@ -1,0 +1,74 @@
+From 27eb43a59ff8c7c96b2d8db606a850ed67ed235e Mon Sep 17 00:00:00 2001
+From: Xiaoliang Yang <xiaoliang.yang_1@nxp.com>
+Date: Fri, 21 Apr 2017 17:29:43 +0800
+Subject: [PATCH] armv7:dts:ls1021a-iot add PN7150
+
+Add pn7150 node on ls1021aIOT dts to support NFC card reader.
+
+Signed-off-by: Xiaoliang Yang <xiaoliang.yang_1@nxp.com>
+---
+ arch/arm/boot/dts/ls1021a-iot.dts |  7 +++++++
+ arch/arm/boot/dts/ls1021a.dtsi    | 29 +++++++++++++++++++++++++++++
+ 2 files changed, 36 insertions(+)
+
+diff --git a/arch/arm/boot/dts/ls1021a-iot.dts b/arch/arm/boot/dts/ls1021a-iot.dts
+index 8990785..11b18a5 100644
+--- a/arch/arm/boot/dts/ls1021a-iot.dts
++++ b/arch/arm/boot/dts/ls1021a-iot.dts
+@@ -149,6 +149,13 @@
+ 		reg = <0x39>;
+ 		interrupts = <GIC_SPI 163 IRQ_TYPE_EDGE_RISING>;
+ 	};
++	pn547: pn547@28 {
++		compatible = "nxp,pn547";
++		reg = <0x28>;
++		clock-frequency = <400000>;
++		interrupt-gpios = <&gpio2 25 0>;
++		enable-gpios = <&gpio2 24 0>;
++	};
+ };
+ 
+ &i2c1 {
+diff --git a/arch/arm/boot/dts/ls1021a.dtsi b/arch/arm/boot/dts/ls1021a.dtsi
+index 30b8244..432faa9 100644
+--- a/arch/arm/boot/dts/ls1021a.dtsi
++++ b/arch/arm/boot/dts/ls1021a.dtsi
+@@ -403,6 +403,35 @@
+ 			clock-names = "ipg";
+ 			status = "disabled";
+ 		};
++		
++		gpio0: gpio@2300000 {
++			compatible = "fsl,qoriq-gpio";
++			reg = <0x0 0x2300000 0x0 0x10000>;
++			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
++		
++		gpio1: gpio@2310000 {
++			compatible = "fsl,qoriq-gpio";
++			reg = <0x0 0x2310000 0x0 0x10000>;
++			interrupts = <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
++		gpio2: gpio@2320000 {
++			compatible = "fsl,qoriq-gpio";
++			reg = <0x0 0x2320000 0x0 0x10000>;
++			interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
+ 
+ 		wdog0: watchdog@2ad0000 {
+ 			compatible = "fsl,imx21-wdt";
+-- 
+2.1.0.27.g96db324
+
