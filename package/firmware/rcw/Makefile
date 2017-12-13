@@ -24,6 +24,16 @@ PKG_LICENSE_FILES:=Licenses/README
 
 PKG_FLAGS:=nonshared
 
+ifdef CONFIG_PACKAGE_ip-full
+	RCW_LS1012_BIN_NAME:=ls1012ardb-rcw_kw41.bin
+else
+ifdef CONFIG_PACKAGE_bluez-utils
+	RCW_LS1012_BIN_NAME:=ls1012ardb-rcw_kw41.bin
+else
+	RCW_LS1012_BIN_NAME:=ls1012ardb-rcw_nfc.bin
+endif
+endif
+
 include $(INCLUDE_DIR)/package.mk
 
 define rcw/Default
@@ -78,6 +88,7 @@ define Build/Configure
 endef
 
 define Build/Compile
+	$(CP) ./bins/$(RCW_LS1012_BIN_NAME) $(PKG_BUILD_DIR)/ls1012ardb-rcw.bin
 endef
 
 define Package/rcw/install/default
