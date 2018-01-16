@@ -46,7 +46,7 @@ define Build/append-ls-head
 endef
 
 define Build/append-ls-ubootEnv
-	dd if=uboot-env/$(1)-uboot-env.bin >> $@
+	dd if=$(KDIR)/$(1)-uboot-env.bin >> $@
 endef
 
 define Build/append-ls-bootImage
@@ -56,6 +56,7 @@ define Build/append-ls-bootImage
 	mcopy -i $(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img $(DTS_DIR)/$(word 1,$(1)).dtb ::
 	mcopy -i $(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img $(IMAGE_KERNEL) ::uImage
 	cp -r backup $(KDIR_TMP)/$(word 2,$(1))-backup
+	cp $(KDIR)/root.ext4.gz.uboot $(KDIR_TMP)/$(word 2,$(1))-backup/
 	./gen_layerscape_version_json.sh $(KDIR_TMP)/$(word 2,$(1))-backup/version.json  $(word 2,$(1))-$(SUBTARGET)
 	mcopy -i $(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img $(KDIR_TMP)/$(word 2,$(1))-backup ::backup
 	dd if=$(KDIR_TMP)/$(word 2,$(1))-$(SUBTARGET)-boot.img >> $@

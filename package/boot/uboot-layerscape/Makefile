@@ -91,6 +91,7 @@ endef
 
 define Package/uboot/install/default
 	$(CP) $(PKG_BUILD_DIR)/$(UBOOT_IMAGE) $(KDIR)/$(1)-64b-uboot.bin
+	-$(PKG_BUILD_DIR)/tools/mkenvimage -s 8192 -o $(KDIR)/$(1)-uboot-env.bin uboot-env/$(BUILD_VARIANT)-uboot-env.txt
 endef
 
 define Package/uboot/install/template

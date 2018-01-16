@@ -14,8 +14,8 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_MIRROR_HASH:=b62f4a55882ffb6b57da24ad9eaa98237141941d273e06a2244220a3e6b82ce7
-PKG_SOURCE_URL:=https://github.com/fsl-jyt/uboot-ls-32b.git
-PKG_SOURCE_VERSION:=763de09cc7265e3147e2df2e15f91c73231907f4
+PKG_SOURCE_URL:=https://github.com/keinYang/uboot-ls-32b.git
+PKG_SOURCE_VERSION:=19675da77fe4e1b589b5d501662534713323bf39
 
 PKG_BUILD_DIR=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
 
@@ -79,7 +79,8 @@ define Build/Compile
 endef
 
 define Package/uboot/install/default
-	$(CP) ./images/$(UBOOT_CONFIG) $(KDIR)/$(1)-32b-uboot.bin
+	$(CP) $(PKG_BUILD_DIR)/$(UBOOT_CONFIG) $(KDIR)/$(1)-32b-uboot.bin
+	-$(PKG_BUILD_DIR)/tools/mkenvimage -s 8192 -o $(KDIR)/$(1)-uboot-env.bin uboot-env/$(1)-uboot-env.txt
 endef
 
 define Package/uboot/install/template

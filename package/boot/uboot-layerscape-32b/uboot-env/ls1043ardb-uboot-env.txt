@@ -1,0 +1,23 @@
+baudrate=115200
+bootargs=root=/dev/ram0 rootwait rw console=ttyS0,115200
+bootcmd=run mmcboot
+mmcboot=setenv bootargs root=/dev/mmcblk0p2 rootwait rw earlycon=uart8250,0x21c0500 console=ttyS0,115200;mmcinfo;fatload mmc 0:1 ${loadaddr} ${bootfile};fatload mmc 0:1 $fdtaddr $fdtfile;bootm $loadaddr - $fdtaddr
+rollbackboot=root=/dev/ram0 rootwait rw earlycon=uart8250,0x21c0500 console=ttyS0,115200;mmcinfo;fatload mmc 0:1 ${loadaddr} ${bootfile};fatload mmc 0:1 $fdtaddr $fdtfile;fatload mmc 0:1 0x88000000 backup/root.ext4.gz.uboot;bootm $loadaddr 0x88000000 $fdtaddr
+bootdelay=3
+bootfile=uImage
+fdtfile=fsl-ls1043a-rdb.dtb
+ethaddr=00:1F:7B:63:35:F1
+eth1addr=00:1F:7B:63:35:EA
+eth2addr=00:1F:7B:63:35:E9
+ethact=FM1@DTSEC3
+ethprime=FM1@DTSEC3
+fdt_high=0xffffffffffffffff
+fdtcontroladdr=ffc01550
+fman_ucode=ffc12090
+hwconfig=fsl_ddr:bank_intlv=auto
+initrd_high=0xffffffffffffffff
+loadaddr=0xa0000000
+fdtaddr=0x8f000000
+stderr=serial
+stdin=serial
+stdout=serial

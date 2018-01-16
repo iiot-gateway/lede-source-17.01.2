@@ -9,13 +9,13 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/image.mk
 
 PKG_NAME:=rcw
-PKG_VERSION:=v1.0
+PKG_VERSION:=v2.0
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_MIRROR_HASH:=8082979dbdef57e36a3096986aa426ef678c152403eb1dbd132da28f01490b6d
-PKG_SOURCE_URL:=https://github.com/fsl-jyt/rcw.git
-PKG_SOURCE_VERSION:=17e09e19bd5cf94e5ebc84916b4607743c29723e
+PKG_SOURCE_URL:=https://github.com/keinYang/rcw-ls1012a.git
+PKG_SOURCE_VERSION:=41aa337ec8a4b1316d16e02cf28fd22c9318161c
 
 PKG_BUILD_DIR=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
 
@@ -24,16 +24,6 @@ PKG_LICENSE_FILES:=Licenses/README
 
 PKG_FLAGS:=nonshared
 
-ifdef CONFIG_PACKAGE_ip-full
-	RCW_LS1012_BIN_NAME:=ls1012ardb-rcw_kw41.bin
-else
-ifdef CONFIG_PACKAGE_bluez-utils
-	RCW_LS1012_BIN_NAME:=ls1012ardb-rcw_kw41.bin
-else
-	RCW_LS1012_BIN_NAME:=ls1012ardb-rcw_nfc.bin
-endif
-endif
-
 include $(INCLUDE_DIR)/package.mk
 
 define rcw/Default
@@ -41,24 +31,20 @@ define rcw/Default
 	CONFIG:=
 endef
 
-define rcw/ls1043ardb
-	TITLE=RCW binary $(PKG_NAME)-$(PKG_VERSION) for NXP ls1043ardb 64b/32b Dev Board
-	CONFIG=ls1043ardb-rcw.bin
-endef
-
-define rcw/ls1046ardb
-	TITLE=RCW binary $(PKG_NAME)-$(PKG_VERSION) for NXP ls1046ardb 64b/32b Dev Board
-	CONFIG=ls1046ardb-rcw.bin
-endef
-
 define rcw/ls1012ardb
 	TITLE=RCW binary $(PKG_NAME)-$(PKG_VERSION) for NXP ls1012ardb 64b/32b Dev Board
-	CONFIG=ls1012ardb-rcw.bin
+ifdef CONFIG_PACKAGE_ip-full
+	CONFIG=ls1012ardb-rcw_kw41.bin
+else
+ifdef CONFIG_PACKAGE_bluez-utils
+	CONFIG=ls1012ardb-rcw_kw41.bin
+else
+	CONFIG=ls1012ardb-rcw_nfc.bin
+endif
+endif
 endef
 
 RCWS := \
-	ls1043ardb \
-	ls1046ardb \
 	ls1012ardb
 
 define Package/rcw/template
@@ -88,7 +74,6 @@ define Build/Configure
 endef
 
 define Build/Compile
-	$(CP) ./bins/$(RCW_LS1012_BIN_NAME) $(PKG_BUILD_DIR)/ls1012ardb-rcw.bin
 endef
 
 define Package/rcw/install/default
